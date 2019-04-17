@@ -1,8 +1,10 @@
 package com.example.mazerunner1.rendering;
 
-public class MazeRenderer {
+public class MazeWindow {
 
-    public MazeRenderer() {
+
+
+    public MazeWindow() {
 
     }
 
