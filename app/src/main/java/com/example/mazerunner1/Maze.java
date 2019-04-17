@@ -1,7 +1,7 @@
 package com.example.mazerunner1;
 
 public class Maze {
-    char[][] tileChars;
+    private char[][] tileChars;
     public Maze(char[][] tilesIn) {
         tileChars = tilesIn;
     }
