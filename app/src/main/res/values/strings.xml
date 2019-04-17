@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MazeRunner1</string>
+    <string name="app_name">Maze Runner</string>
     <string name="title_activity_game">GameActivity</string>
     <string name="title_activity_create">CreateActivity</string>
 </resources>

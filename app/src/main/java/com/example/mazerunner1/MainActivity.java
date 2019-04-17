@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO: Start custom maze selection activity.
+                Intent gameIntent = new Intent(MainActivity.this, GameActivity.class);
+                startActivity(gameIntent);
             }
         });
 
