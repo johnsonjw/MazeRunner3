@@ -2,16 +2,16 @@ package com.example.mazerunner1.rendering;
 
 public class MazeWindow {
 
-
-
     public MazeWindow() {
 
     }
 
+    //TODO
     public void setRenderPoint(double x, double y) {
 
     }
 
+    //TODO
     public void setRenderAngle(double t) {
 
     }
