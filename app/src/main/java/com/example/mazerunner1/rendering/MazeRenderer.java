@@ -10,7 +10,9 @@ public class MazeRenderer {
 
     }
 
+    public void setRenderAngle(double t) {
 
+    }
 
     //TODO
     public String getTextScreen() {
