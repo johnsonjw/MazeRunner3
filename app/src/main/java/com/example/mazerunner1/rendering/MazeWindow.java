@@ -2,8 +2,14 @@ package com.example.mazerunner1.rendering;
 
 public class MazeWindow {
 
-    public MazeWindow() {
+    int xSize;
+    int ySize;
+    AsciiRenderer renderer;
+    RayCaster caster = new RayCaster();
 
+    public MazeWindow(int width, int height) {
+        this.xSize = width;
+        this.ySize = height;
     }
 
     //TODO

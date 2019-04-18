@@ -4,12 +4,9 @@ import com.example.mazerunner1.Maze;
 
 public class AsciiRenderer {
 
-    Maze maze;
-    RayCaster caster;
-
     //TODO
-    public AsciiRenderer(Maze maze) {
-        this.maze = maze;
+    public AsciiRenderer() {
+
     }
 
     public String getRenderColumn(int c) {
