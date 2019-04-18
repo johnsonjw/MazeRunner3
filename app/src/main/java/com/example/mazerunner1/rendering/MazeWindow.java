@@ -2,8 +2,8 @@ package com.example.mazerunner1.rendering;
 
 public class MazeWindow {
 
-    int xSize;
-    int ySize;
+    private int xSize;
+    private int ySize;
     AsciiRenderer renderer;
     RayCaster caster = new RayCaster();
 
