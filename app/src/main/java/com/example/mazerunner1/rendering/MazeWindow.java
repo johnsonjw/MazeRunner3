@@ -13,12 +13,12 @@ public class MazeWindow {
     }
 
     //TODO
-    public void setRenderPoint(double x, double y) {
+    public void setRenderPoint(Coord coord) {
 
     }
 
     //TODO
-    public void setRenderAngle(double t) {
+    public void setRenderRay(Ray ray) {
 
     }
 

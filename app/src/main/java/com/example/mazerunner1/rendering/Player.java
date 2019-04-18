@@ -26,4 +26,18 @@ public class Player {
 
     }
 
+
+    //Getter Methods
+    public Coord getPosition() {
+        return position;
+    }
+    public double getSpeed() {
+        return speed;
+    }
+    public double getFieldOfView() {
+        return fieldOfView;
+    }
+    public Ray getFacingRay() {
+        return facingRay;
+    }
 }

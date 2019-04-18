@@ -10,21 +10,30 @@ public class MazeGame {
 
     public void turnLeft() {
 
+        updateMazeWindow();
     }
 
     public void turnRight() {
 
+        updateMazeWindow();
     }
 
     public void moveForward() {
 
+        updateMazeWindow();
     }
 
     public void moveBackward() {
-        
+
+        updateMazeWindow();
     }
 
     public String getMazeRender() {
         return window.getTextScreen();
+    }
+
+    private void updateMazeWindow() {
+        window.setRenderRay(player.getFacingRay());
+        window.setRenderPoint(player.getPosition());
     }
 }
