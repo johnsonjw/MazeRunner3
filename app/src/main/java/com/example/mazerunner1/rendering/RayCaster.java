@@ -6,14 +6,14 @@ import com.example.mazerunner1.Maze;
 public class RayCaster {
     private int screenWidth;
 
-    private static double maxRenderDistance = 10;
-    private static double renderResolution = .1;
-    private static char wallChar = '#';
+    private final double maxRenderDistance = 10;
+    private final double renderResolution = .1;
+    private final char wallChar = '#';
 
 
     public RayCaster (int width)
     {
-
+        screenWidth = width;
     }
 
     public double[] getDistanceArray(Player player, Maze maze) {
