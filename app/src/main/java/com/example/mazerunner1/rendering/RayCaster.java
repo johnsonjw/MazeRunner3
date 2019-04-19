@@ -7,7 +7,7 @@ public class RayCaster {
     private int screenWidth;
 
     private final double maxRenderDistance = 10;
-    private final double renderResolution = .5;
+    private final double renderResolution = .2;
     private final char wallChar = '#';
 
 
@@ -34,7 +34,6 @@ public class RayCaster {
         while(!hitWall) {
             Coord distanceCoord = ray.getCoordAt(distanceOut);
             if(maze.contains(distanceCoord)) {
-                System.out.println(distanceCoord);
                 if(maze.getTileAt(distanceCoord) == wallChar) {
                     hitWall = true;
                     System.out.print("WALL FOUND @ ");

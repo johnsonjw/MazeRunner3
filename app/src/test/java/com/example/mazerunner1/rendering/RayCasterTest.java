@@ -15,7 +15,7 @@ public class RayCasterTest {
         System.out.println(squareMaze.toString());
         Coord playerStart =  new Coord(1f,1f);
         Ray facingRay = new Ray(playerStart, 0);
-        Player player = new Player(playerStart, facingRay, 0,60);
+        Player player = new Player(playerStart, facingRay, 0,90);
         RayCaster caster = new RayCaster(10);
         double[] distanceArray = caster.getDistanceArray(player, squareMaze);
         String toPrint = "";

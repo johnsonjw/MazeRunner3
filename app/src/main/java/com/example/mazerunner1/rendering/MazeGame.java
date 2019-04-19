@@ -1,7 +1,10 @@
 package com.example.mazerunner1.rendering;
 
+import com.example.mazerunner1.Maze;
+
 public class MazeGame {
     MazeWindow window;
+    Maze maze;
     Player player;
 
     public MazeGame() {
