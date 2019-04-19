@@ -22,10 +22,15 @@ public class Ray {
         return coordOut;
     }
 
+
     public Coord getOrigin() {
         return origin;
     }
     public double getAngle() {
         return angle;
+    }
+
+    public String toString() {
+        return origin.toString() + ", " + String.format("%5.2f", angle);
     }
 }

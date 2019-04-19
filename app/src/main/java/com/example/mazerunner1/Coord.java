@@ -8,6 +8,10 @@ public class Coord {
         this.y = y;
     }
 
+    public String toString() {
+        return String.format("%5.2f", x) + "," + String.format("%5.2f", y);
+    }
+
     public double getY() {
         return y;
     }
