@@ -14,15 +14,18 @@ public class RayCasterTest {
     @Test
     public void getDistanceArray() {
         Maze squareMaze = makeSquareMaze();
+        System.out.println(squareMaze);
         Coord playerStart =  new Coord(1f,1f);
         Ray facingRay = new Ray(playerStart, 0);
+        //secSystem.out.println("Scanning from " + facingRay);
         Player player = new Player(playerStart, facingRay, 0,90);
-        RayCaster caster = new RayCaster(10);
+        RayCaster caster = new RayCaster(15);
         double[] distanceArray = caster.getDistanceArray(player, squareMaze);
         String toPrint = "";
         for(double printDouble : distanceArray) {
-            toPrint += " " + String.format("%5.2f",printDouble);
+            toPrint += String.format("%5.2f",printDouble)+ ",";
         }
+
         System.out.println(toPrint);
     }
 
@@ -38,10 +41,11 @@ public class RayCasterTest {
                 }
             }
         }
-        squareTiles[1][5] = 3;
-        String tileString = converter.charArrayToString(squareTiles);
-        char[][] reConvertedArray = converter.StringToCharArray(tileString);
-        String reConvertedString = converter.charArrayToString(reConvertedArray);
+/*
+        for(int i = 0; i<4; i++) {
+            squareTiles[i+3][6] = '#';
+        }
+*/
         Maze mazeOut = new Maze(squareTiles);
         return mazeOut;
     }

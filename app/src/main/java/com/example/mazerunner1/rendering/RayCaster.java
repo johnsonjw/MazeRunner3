@@ -28,16 +28,16 @@ public class RayCaster {
     }
 
     private double getDistanceToWall(Ray ray, Maze maze) {
-        System.out.println("getDistanceToWall for ray:" + ray.toString());
+//        System.out.println("getDistanceToWall for ray:" + ray.toString());
         double distanceOut=0;
         boolean hitWall = false;
-        while(!hitWall) {
+        while(!hitWall && distanceOut<maxRenderDistance) {
             Coord distanceCoord = ray.getCoordAt(distanceOut);
             if(maze.contains(distanceCoord)) {
                 if(maze.getTileAt(distanceCoord) == wallChar) {
                     hitWall = true;
-                    System.out.print("WALL FOUND @ ");
-                    System.out.println(distanceCoord);
+//                    System.out.print("WALL FOUND @ ");
+//                    System.out.println(distanceCoord);
                 }
             } else {
                 hitWall=true;
@@ -45,6 +45,6 @@ public class RayCaster {
             distanceOut+=renderResolution;
         }
 
-        return distanceOut;
+        return distanceOut-renderResolution;
     }
 }

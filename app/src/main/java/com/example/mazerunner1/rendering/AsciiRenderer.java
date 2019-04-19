@@ -15,6 +15,16 @@ public class AsciiRenderer {
 
     public String renderFrom(double[] distanceArray) {
         char[][] renderArray = new char[distanceArray.length][height];
+        for(int x = 0; x<distanceArray.length;) {
+            String columnText = renderColumn(distanceArray[x]);
+            for(int y = 0; y < columnText.length(); y++) {
+
+            }
+        }
         return converter.charArrayToString(renderArray);
+    }
+
+    private String renderColumn(double distance) {
+        return "";
     }
 }

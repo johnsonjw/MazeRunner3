@@ -31,12 +31,16 @@ public class MazeGame {
         updateMazeWindow();
     }
 
+    //TODO
+    public void loadMazeText(String mazeText) {
+
+    }
+
     public String getMazeRender() {
         return window.getTextScreen(player, maze);
     }
 
     private void updateMazeWindow() {
         window.setRenderRay(player.getFacingRay());
-        window.setRenderPoint(player.getPosition());
     }
 }
