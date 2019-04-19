@@ -9,7 +9,7 @@
     tools:showIn="@layout/activity_game">
 
     <TextView
-        android:id="@+id/maze"
+        android:id="@+id/mazeView"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:text="You will see a maze here"

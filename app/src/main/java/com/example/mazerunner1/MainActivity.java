@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 public class MainActivity extends AppCompatActivity {
+    final static String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,17 +21,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initUIComponents() {
-        View dimensionsView = getLayoutInflater().inflate(R.layout.dialog_dimensions, null);
+        final View dimensionsView = getLayoutInflater().inflate(R.layout.dialog_dimensions, null);
         final AlertDialog dimensionsDialog = buildDialog(R.layout.dialog_dimensions);
 
-        View tutorialView = getLayoutInflater().inflate(R.layout.dialog_tutorial, null);
+        final View tutorialView = getLayoutInflater().inflate(R.layout.dialog_tutorial, null);
         final AlertDialog tutorialDialog = buildDialog(R.layout.dialog_tutorial);
 
-        Button play = findViewById(R.id.play);
-        Button create = findViewById(R.id.confirmDimensions);
-        Button tutorial = findViewById(R.id.tutorial);
-        Button confirmDimensions = dimensionsView.findViewById(R.id.confirmDimensions);
-        Button exitTutorial = tutorialView.findViewById(R.id.exitTutorial);
+        final Button play = findViewById(R.id.play);
+        final Button create = findViewById(R.id.confirmDimensions);
+        final Button tutorial = findViewById(R.id.tutorial);
+        final Button confirmDimensions = dimensionsView.findViewById(R.id.confirmDimensions);
+        final Button exitTutorial = tutorialView.findViewById(R.id.exitTutorial);
         final EditText width = dimensionsView.findViewById(R.id.width);
         final EditText height = dimensionsView.findViewById(R.id.height);
 
@@ -66,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         confirmDimensions.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "onClick: confirmDimensions clicked.");
                 Intent createIntent = new Intent(MainActivity.this, CreateActivity.class);
                 createIntent.putExtra("WIDTH", width.getText());
                 createIntent.putExtra("HEIGHT", height.getText());

@@ -9,8 +9,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
+import android.widget.TextView;
 
 import com.example.mazerunner1.R;
+import com.example.mazerunner1.rendering.MazeWindow;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -23,12 +25,19 @@ public class GameActivity extends AppCompatActivity {
         return true;
     }
 
+    private void initUI() {
+        TextView mazeView = findViewById(R.id.mazeView);
+        MazeWindow mazeWindow = new MazeWindow(500, 500);
+        mazeView.setText(mazeWindow.getTextScreen());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        initUI();
     }
 
     GLSurfaceView.Renderer mazeRenderer = new GLSurfaceView.Renderer() {
