@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
         final EditText width = dimensionsView.findViewById(R.id.width);
         final EditText height = dimensionsView.findViewById(R.id.height);
 
+        //TODO: Fix dialog boxes.
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,7 +48,9 @@ public class MainActivity extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                dimensionsDialog.show();
+                //dimensionsDialog.show();
+                Intent createIntent = new Intent(MainActivity.this, CreateActivity.class);
+                startActivity(createIntent);
             }
         });
 
@@ -70,8 +73,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Log.d(TAG, "onClick: confirmDimensions clicked.");
                 Intent createIntent = new Intent(MainActivity.this, CreateActivity.class);
-                createIntent.putExtra("WIDTH", width.getText());
-                createIntent.putExtra("HEIGHT", height.getText());
                 startActivity(createIntent);
             }
         });

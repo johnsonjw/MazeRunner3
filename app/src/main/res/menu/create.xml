@@ -5,14 +5,14 @@
     tools:context="com.example.mazerunner1.CreateActivity">
 
     <item
-        android:id="@+id/action_export"
+        android:id="@+id/create_export"
         android:orderInCategory="100"
         android:title="Export"
         app:showAsAction="never"
     />
 
     <item
-        android:id="@+id/action_exit"
+        android:id="@+id/create_exit"
         android:orderInCategory="100"
         android:title="Exit"
         app:showAsAction="never"
