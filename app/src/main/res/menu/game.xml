@@ -6,7 +6,7 @@
     tools:context="com.example.mazerunner1.GameActivity">
 
     <item
-        android:id="@+id/action_exit"
+        android:id="@+id/game_exit"
         android:orderInCategory="100"
         android:title="Exit"
         app:showAsAction="never" />
