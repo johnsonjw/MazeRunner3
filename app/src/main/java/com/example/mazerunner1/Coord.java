@@ -1,4 +1,4 @@
-package com.example.mazerunner1.rendering;
+package com.example.mazerunner1;
 
 public class Coord {
     private double x,y;

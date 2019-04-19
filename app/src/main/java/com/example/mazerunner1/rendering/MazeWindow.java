@@ -1,5 +1,7 @@
 package com.example.mazerunner1.rendering;
 
+import com.example.mazerunner1.Coord;
+
 public class MazeWindow {
 
     private int xSize;

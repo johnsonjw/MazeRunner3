@@ -1,5 +1,6 @@
 package com.example.mazerunner1.rendering;
 
+import com.example.mazerunner1.Coord;
 import com.example.mazerunner1.Maze;
 
 public class RayCaster {
@@ -32,7 +33,13 @@ public class RayCaster {
         while(!hitWall) {
             distanceOut+=renderResolution;
             Coord distanceCoord = ray.getCoordAt(distanceOut);
-
+            if(maze.contains(distanceCoord)) {
+                if(maze.getTileAt(distanceCoord) == wallChar) {
+                    hitWall = true;
+                }
+            } else {
+                hitWall=true;
+            }
         }
 
         return distanceOut;
