@@ -1,19 +1,27 @@
 package com.example.mazerunner1.rendering;
 
 public class Ray {
-    double x, y, angle;
+    double angle;
+    Coord origin;
 
     public Ray(double x, double y, double angle) {
-        this.x = x;
-        this.y = y;
+        origin  = new Coord(x,y);
+        this.angle = angle;
+    }
+    public Ray(Coord loc, double angle) {
+        origin  = new Coord(loc.getX(), loc.getY());
         this.angle = angle;
     }
 
-    public double getX() {
-        return x;
+    public Coord getCoordAt(double distance) {
+        double xOut = (distance * Math.sin(Math.toRadians(angle))) + origin.getX();
+        double yOut = (distance * Math.cos(Math.toRadians(angle))) + origin.getY();
+        Coord coordOut = new Coord(xOut, yOut);
+        return coordOut;
     }
-    public double getY() {
-        return y;
+
+    public Coord getOrigin() {
+        return origin;
     }
     public double getAngle() {
         return angle;

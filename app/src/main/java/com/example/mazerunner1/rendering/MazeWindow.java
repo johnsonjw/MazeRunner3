@@ -5,11 +5,12 @@ public class MazeWindow {
     private int xSize;
     private int ySize;
     AsciiRenderer renderer;
-    RayCaster caster = new RayCaster();
+    RayCaster caster;
 
     public MazeWindow(int width, int height) {
         this.xSize = width;
         this.ySize = height;
+        caster =  new RayCaster(width);
     }
 
     //TODO
