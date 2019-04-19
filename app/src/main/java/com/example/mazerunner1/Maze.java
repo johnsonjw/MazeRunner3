@@ -32,8 +32,8 @@ public class Maze {
 
     public String toString() {
         String out="";
-        for(int x=0; x<tileChars.length;x++) {
-            for(int y=0; y<tileChars[x].length;y++) {
+        for(int y=0; y<tileChars[0].length;y++) {
+            for(int x=0; x<tileChars.length;x++) {
                 out+=tileChars[x][y];
             }
             out +="\n";

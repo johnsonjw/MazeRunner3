@@ -9,7 +9,8 @@ public class AsciiRenderer {
 
     }
 
-    public String getRenderColumn(int c) {
-        return "rendering column " + c;
+    public String renderFrom(double[] distanceArray) {
+        
+        return null;
     }
 }

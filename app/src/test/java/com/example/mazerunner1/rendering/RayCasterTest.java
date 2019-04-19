@@ -2,17 +2,18 @@ package com.example.mazerunner1.rendering;
 
 import com.example.mazerunner1.Coord;
 import com.example.mazerunner1.Maze;
+import com.example.mazerunner1.StringConverter;
 
 import org.junit.Test;
 
 import static org.junit.Assert.*;
 
 public class RayCasterTest {
+    StringConverter converter = new StringConverter();
 
     @Test
     public void getDistanceArray() {
         Maze squareMaze = makeSquareMaze();
-        System.out.println(squareMaze.toString());
         Coord playerStart =  new Coord(1f,1f);
         Ray facingRay = new Ray(playerStart, 0);
         Player player = new Player(playerStart, facingRay, 0,90);
@@ -37,6 +38,10 @@ public class RayCasterTest {
                 }
             }
         }
+        squareTiles[1][5] = 3;
+        String tileString = converter.charArrayToString(squareTiles);
+        char[][] reConvertedArray = converter.StringToCharArray(tileString);
+        String reConvertedString = converter.charArrayToString(reConvertedArray);
         Maze mazeOut = new Maze(squareTiles);
         return mazeOut;
     }
