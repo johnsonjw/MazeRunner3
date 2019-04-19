@@ -13,20 +13,7 @@ public class StringConverter {
                 }
             }
         }
-
         return outArray;
-    }
-    private boolean isRectangle(String toCheck) {
-        String[] split;
-        boolean lengthMatch = true;
-        split = toCheck.split("\\n");
-        String lastLine = split[0];
-        for(String line : split) {
-            if(line.length() != lastLine.length()) {
-                lengthMatch = false;
-            }
-        }
-        return lengthMatch;
     }
     public String charArrayToString(char[][] charArray) {
         String out = "";
@@ -40,5 +27,17 @@ public class StringConverter {
             out += charArray[x][charArray.length-1]+"";
         }
         return out;
+    }
+    private boolean isRectangle(String toCheck) {
+        String[] split;
+        boolean lengthMatch = true;
+        split = toCheck.split("\\n");
+        String lastLine = split[0];
+        for(String line : split) {
+            if(line.length() != lastLine.length()) {
+                lengthMatch = false;
+            }
+        }
+        return lengthMatch;
     }
 }

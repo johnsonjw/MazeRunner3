@@ -32,7 +32,7 @@ public class MazeGame {
     }
 
     public String getMazeRender() {
-        return window.getTextScreen();
+        return window.getTextScreen(player, maze);
     }
 
     private void updateMazeWindow() {

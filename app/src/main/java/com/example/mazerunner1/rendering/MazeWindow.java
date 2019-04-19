@@ -1,6 +1,8 @@
 package com.example.mazerunner1.rendering;
 
 import com.example.mazerunner1.Coord;
+import com.example.mazerunner1.Maze;
+import com.example.mazerunner1.StringConverter;
 
 public class MazeWindow {
 
@@ -26,7 +28,7 @@ public class MazeWindow {
     }
 
     //TODO
-    public String getTextScreen() {
-        return "MAZE NOT RENDERED";
+    public String getTextScreen(Player player, Maze maze) {
+        return renderer.renderFrom(caster.getDistanceArray(player, maze));
     }
 }
