@@ -20,7 +20,7 @@ public class RayCasterTest {
         //secSystem.out.println("Scanning from " + facingRay);
         Player player = new Player(playerStart, facingRay, 0,90);
         RayCaster caster = new RayCaster(15);
-        double[] distanceArray = caster.getDistanceArray(player, squareMaze);
+        double[] distanceArray = caster.getDistanceArray(facingRay, 90, squareMaze);
         String toPrint = "";
         for(double printDouble : distanceArray) {
             toPrint += String.format("%5.2f",printDouble)+ ",";

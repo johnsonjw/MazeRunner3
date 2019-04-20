@@ -8,27 +8,37 @@ public class MazeWindow {
 
     private int xSize;
     private int ySize;
+    private double fov;
     AsciiRenderer renderer;
     RayCaster caster;
+    StringConverter converter = new StringConverter();
+    private String renderedScreen;
+    private Ray renderRay;
+    Maze maze;
 
-    public MazeWindow(int width, int height) {
+    public MazeWindow(int width, int height, double fov, Maze maze) {
         this.xSize = width;
         this.ySize = height;
+        this.fov = fov;
+        this.maze = maze;
+        renderer = new AsciiRenderer(height);
         caster =  new RayCaster(width);
     }
 
     //TODO
-    public void setRenderPoint(Coord coord) {
-
-    }
-
-    //TODO
     public void setRenderRay(Ray ray) {
+        renderRay = ray;
+    }
 
+    public void render() {
+        System.out.println("Rendering screen");
+        double[] distanceArray = caster.getDistanceArray(renderRay, fov, maze);
+        char[][] renderedCharArray = renderer.renderFrom(distanceArray);
+        renderedScreen = converter.charArrayToString(renderedCharArray);
     }
 
     //TODO
-    public String getTextScreen(Player player, Maze maze) {
-        return renderer.renderFrom(caster.getDistanceArray(player, maze));
+    public String getTextScreen() {
+        return renderedScreen;
     }
 }

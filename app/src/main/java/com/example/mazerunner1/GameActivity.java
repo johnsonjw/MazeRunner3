@@ -41,7 +41,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void initUI() {
         TextView mazeView = findViewById(R.id.mazeView);
-        MazeWindow mazeWindow = new MazeWindow(500, 500);
+        //MazeWindow mazeWindow = new MazeWindow(500, 500);
         //mazeView.setText(mazeWindow.getTextScreen());
         mazeView.setText("PLACEHOLDER");
 

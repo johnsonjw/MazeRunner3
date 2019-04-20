@@ -16,12 +16,15 @@ public class RayCaster {
         screenWidth = width;
     }
 
-    public double[] getDistanceArray(Player player, Maze maze) {
+    public double[] getDistanceArray(Ray ray, double fov, Maze maze) {
+        System.out.println("getDistanceArray(" + ray.toString() + ")");
+        System.out.println("fov = " + fov);
         double[] outArray = new double[screenWidth];
-        double degreesPerColumn = player.getFieldOfView()/(screenWidth-1);
+        double degreesPerColumn = fov/(screenWidth-1);
         for(int offset=0; offset<screenWidth; offset++) {
-            double castingAngle = player.getFacingRay().getAngle() + degreesPerColumn*offset;
-            Ray rayToCast = new Ray(player.getPosition(), castingAngle);
+            System.out.println("offset=" + offset);
+            double castingAngle = ray.getAngle() + degreesPerColumn*offset;
+            Ray rayToCast = new Ray(ray.getOrigin(), castingAngle);
             outArray[offset] = getDistanceToWall(rayToCast, maze);
         }
         return outArray;

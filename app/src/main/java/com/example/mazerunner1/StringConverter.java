@@ -24,7 +24,14 @@ public class StringConverter {
             out+="\n";
         }
         for(int x=0; x<charArray.length;x++) {
-            out += charArray[x][charArray.length-1]+"";
+            out += charArray[x][charArray[0].length-1]+"";
+        }
+        return out;
+    }
+    public String charLineToString(char[] charLine) {
+        String out = "";
+        for(char charAt : charLine) {
+            out+=charAt +"";
         }
         return out;
     }
