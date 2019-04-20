@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initUIComponents() {
-        final View dimensionsView = getLayoutInflater().inflate(R.layout.dialog_dimensions, null);
-        final AlertDialog dimensionsDialog = buildDialog(R.layout.dialog_dimensions);
+        final View dimensionsView = getLayoutInflater().inflate(R.layout.activity_dimensions, null);
+        final AlertDialog dimensionsDialog = buildDialog(R.layout.activity_dimensions);
 
         final View tutorialView = getLayoutInflater().inflate(R.layout.dialog_tutorial, null);
         final AlertDialog tutorialDialog = buildDialog(R.layout.dialog_tutorial);
@@ -48,9 +48,8 @@ public class MainActivity extends AppCompatActivity {
         create.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //dimensionsDialog.show();
-                Intent createIntent = new Intent(MainActivity.this, CreateActivity.class);
-                startActivity(createIntent);
+                Intent dimensionsIntent = new Intent(MainActivity.this, DimensionsActivity.class);
+                startActivity(dimensionsIntent);
             }
         });
 
