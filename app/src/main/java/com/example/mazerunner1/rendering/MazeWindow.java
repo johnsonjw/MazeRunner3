@@ -31,7 +31,7 @@ public class MazeWindow {
     }
 
     public void render() {
-        System.out.println("Rendering screen");
+//        System.out.println("Rendering screen");
         double[] distanceArray = caster.getDistanceArray(renderRay, fov, maze);
         char[][] renderedCharArray = renderer.renderFrom(distanceArray);
         renderedScreen = converter.charArrayToString(renderedCharArray);

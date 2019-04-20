@@ -15,7 +15,7 @@ public class AsciiRenderer {
 
     public char[][] renderFrom(double[] distanceArray) {
         char[][] renderArray = new char[distanceArray.length][height];
-        System.out.println("renderArray" + renderArray.length +"x"+renderArray[0].length);
+//        System.out.println("renderArray" + renderArray.length +"x"+renderArray[0].length);
         for(int x = 0; x<distanceArray.length; x++) {
             char[] column = renderColumn(distanceArray[x]);
             for(int y = 0; y < column.length; y++) {

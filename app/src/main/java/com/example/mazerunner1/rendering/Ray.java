@@ -16,8 +16,9 @@ public class Ray {
     }
 
     public Coord getCoordAt(double distance) {
-        double xOut = (distance * Math.sin(Math.toRadians(angle))) + origin.getX();
-        double yOut = (distance * Math.cos(Math.toRadians(angle))) + origin.getY();
+        //System.out.println(Math.cos(Math.toRadians(angle)) + "," + Math.sin(Math.toRadians(angle)));
+        double xOut = (distance * Math.cos(Math.toRadians(angle))) + origin.getX();
+        double yOut = (distance * Math.sin(Math.toRadians(angle))) + origin.getY();
         Coord coordOut = new Coord(xOut, yOut);
         return coordOut;
     }

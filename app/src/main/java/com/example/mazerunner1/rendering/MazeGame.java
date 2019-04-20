@@ -7,7 +7,7 @@ public class MazeGame {
     Maze maze;
     Player player;
 
-    public MazeGame() {
+    public MazeGame(int width, int height, Maze maze) {
 
     }
 

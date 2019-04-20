@@ -17,12 +17,11 @@ public class RayCaster {
     }
 
     public double[] getDistanceArray(Ray ray, double fov, Maze maze) {
-        System.out.println("getDistanceArray(" + ray.toString() + ")");
-        System.out.println("fov = " + fov);
+//        System.out.println("getDistanceArray(" + ray.toString() + ")");
+//        System.out.println("fov = " + fov);
         double[] outArray = new double[screenWidth];
         double degreesPerColumn = fov/(screenWidth-1);
         for(int offset=0; offset<screenWidth; offset++) {
-            System.out.println("offset=" + offset);
             double castingAngle = ray.getAngle() + degreesPerColumn*offset;
             Ray rayToCast = new Ray(ray.getOrigin(), castingAngle);
             outArray[offset] = getDistanceToWall(rayToCast, maze);
@@ -36,6 +35,7 @@ public class RayCaster {
         boolean hitWall = false;
         while(!hitWall && distanceOut<maxRenderDistance) {
             Coord distanceCoord = ray.getCoordAt(distanceOut);
+//            System.out.println("distanceCoord:" + distanceCoord);
             if(maze.contains(distanceCoord)) {
                 if(maze.getTileAt(distanceCoord) == wallChar) {
                     hitWall = true;
@@ -47,7 +47,7 @@ public class RayCaster {
             }
             distanceOut+=renderResolution;
         }
-
+//        System.out.println("distance for ray " + ray.toString() + "="+(distanceOut-renderResolution));
         return distanceOut-renderResolution;
     }
 }
