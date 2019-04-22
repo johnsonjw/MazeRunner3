@@ -26,6 +26,7 @@ public class AsciiRenderer {
     }
 
     public char[] renderColumn(double distance) {
+//        System.out.println("rendering column for distance " + distance);
         char[] column = getEmptyColumn(height);
         int wallHeight = (int) Math.round(getRelativeWallHeight(distance) * height);
         column = addWallTo(column, wallHeight);
@@ -33,20 +34,34 @@ public class AsciiRenderer {
     }
 
     private char[] addWallTo(char[] input, int wallHeight) {
+        System.out.println("adding wall of height " + wallHeight);
         char[] output = input;
-        int toPlace = horizonLine;
-        for(int i=0;i<wallHeight;i++) {
-            if(i%2==0) {
-                toPlace-=i;
-            } else {
-                toPlace+=i;
-            }
-            if(toPlace>=0&&output.length>toPlace) {
-                output[toPlace] = '#';
-            }
+        for(int i=0;i<wallHeight/2;i++) {
+            System.out.println("i="+i);
+            if(output.length>(horizonLine+i))
+                output[horizonLine+i]='#';
+            if(horizonLine-1>=0)
+                output[horizonLine-i]='#';
         }
         return output;
     }
+
+//    private char[] addWallTo(char[] input, int wallHeight) {
+//        System.out.println("adding wall of height " + wallHeight);
+//        char[] output = input;
+//        int toPlace = horizonLine;
+//        for(int i=0;i<wallHeight;i++) {
+//            if(i%2==0) {
+//                toPlace-=i;
+//            } else {
+//                toPlace+=i;
+//            }
+//            if(toPlace>=0&&output.length>toPlace) {
+//                output[toPlace] = '#';
+//            }
+//        }
+//        return output;
+//    }
 
     private char[] getEmptyColumn(int height) {
         char[] out = new char[height];
@@ -66,6 +81,8 @@ public class AsciiRenderer {
     }
     public double getRelativeWallHeight(double distance) {
         double clampedDistance = Math.min(distance,maxRender);
-        return (1f-clampedDistance/maxRender);
+        double wallHeight = 1f - clampedDistance / maxRender;
+//        System.out.println("WallHeight="+ wallHeight);
+        return wallHeight;
     }
 }

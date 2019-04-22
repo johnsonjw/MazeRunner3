@@ -10,9 +10,9 @@ public class MazeWindowTest {
 
     @Test
     public void getTextScreen() {
-        MazeWindow window = new MazeWindow(60,20, 90, makeSquareMaze());
-        for(int i=0;i<10;i++) {
-            int renderAngle=200+10*i;
+        MazeWindow window = new MazeWindow(80,20, 60, makeSquareMaze());
+        for(int i=0;i<1;i++) {
+            int renderAngle=270;
             Ray renderRay = new Ray(2,8,renderAngle);
             window.setRenderRay(renderRay);
             window.render();
@@ -34,9 +34,10 @@ public class MazeWindowTest {
             }
         }
 
-        for(int i = 0; i<3; i++) {
+        for(int i = 2; i<3; i++) {
             squareTiles[i+1][4] = '#';
         }
+        squareTiles[2][7] = '#';
 
         Maze mazeOut = new Maze(squareTiles);
         System.out.println(mazeOut.toString());

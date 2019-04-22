@@ -7,8 +7,10 @@ public class MazeGame {
     Maze maze;
     Player player;
 
-    public MazeGame(int width, int height, Maze maze) {
-
+    public MazeGame(int width, int height, Maze maze, Player player) {
+        this.player = player;
+        this.maze = maze;
+        window = new MazeWindow(width, height, this.player.fieldOfView, this.maze);
     }
 
     public void turnLeft() {
@@ -29,11 +31,6 @@ public class MazeGame {
     public void moveBackward() {
 
         updateMazeWindow();
-    }
-
-    //TODO
-    public void loadMazeText(String mazeText) {
-
     }
 
     public String getMazeRender() {
