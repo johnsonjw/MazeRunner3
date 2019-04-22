@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.example.mazerunner1.R;
+import com.example.mazerunner1.rendering.MazeGame;
 import com.example.mazerunner1.rendering.MazeWindow;
 
 import javax.microedition.khronos.egl.EGLConfig;
@@ -41,9 +42,8 @@ public class GameActivity extends AppCompatActivity {
 
     private void initUI() {
         TextView mazeView = findViewById(R.id.mazeView);
-        //MazeWindow mazeWindow = new MazeWindow(500, 500);
-        //mazeView.setText(mazeWindow.getTextScreen());
-        mazeView.setText("PLACEHOLDER");
+        MazeGame maze = new MazeGame(mazeView.getWidth(), mazeView.getHeight(), null, null)
+        mazeView.setText(maze.getMazeRender());
 
     }
 
@@ -69,7 +69,7 @@ public class GameActivity extends AppCompatActivity {
 
         @Override
         public void onDrawFrame(GL10 gl10) {
-
+            
         }
     };
 }
