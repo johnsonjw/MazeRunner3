@@ -13,23 +13,27 @@ public class MazeGame {
         window = new MazeWindow(width, height, this.player.fieldOfView, this.maze);
     }
 
-    public void turnLeft() {
+    //TODO
+    public void turnLeft(double turnSpeed) {
 
         updateMazeWindow();
     }
 
-    public void turnRight() {
+    //TODO
+    public void turnRight(double turnSpeed) {
 
         updateMazeWindow();
     }
 
-    public void moveForward() {
-
+    //TODO
+    public void moveForward(double moveSpeed) {
+        player.moveForward(moveSpeed);
         updateMazeWindow();
     }
 
-    public void moveBackward() {
-
+    //TODO
+    public void moveBackward(double moveSpeed) {
+        player.moveBackward(moveSpeed);
         updateMazeWindow();
     }
 
