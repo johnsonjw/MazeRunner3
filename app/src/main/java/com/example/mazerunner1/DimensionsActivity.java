@@ -28,6 +28,7 @@ public class DimensionsActivity extends AppCompatActivity {
                 createIntent.putExtra("WIDTH", width.getText());
                 createIntent.putExtra("HEIGHT", height.getText());
                 startActivity(createIntent);
+                finish();
             }
         });
     }

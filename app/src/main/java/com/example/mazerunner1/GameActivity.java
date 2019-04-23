@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
+import android.view.TextureView;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,6 +24,8 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class GameActivity extends AppCompatActivity {
     final static String TAG = "GameActivity";
+    final static double MOVE_SPEED = 0.2;
+    MazeGame maze;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -42,9 +46,44 @@ public class GameActivity extends AppCompatActivity {
 
     private void initUI() {
         TextView mazeView = findViewById(R.id.mazeView);
-        MazeGame maze = new MazeGame(mazeView.getWidth(), mazeView.getHeight(), null, null);
-        mazeView.setText(maze.getMazeRender());
+        TextureView forward = findViewById(R.id.forward);
+        TextureView back = findViewById(R.id.back);
+        TextureView left = findViewById(R.id.left);
+        TextureView right = findViewById(R.id.right);
+        //MazeGame maze = new MazeGame(mazeView.getWidth(), mazeView.getHeight(), null, null);
+        //mazeView.setText(maze.getMazeRender());
 
+        forward.setOnHoverListener(new View.OnHoverListener() {
+            @Override
+            public boolean onHover(View view, MotionEvent motionEvent) {
+                //maze.moveForward(MOVE_SPEED);
+                return false;
+            }
+        });
+
+        back.setOnHoverListener(new View.OnHoverListener() {
+            @Override
+            public boolean onHover(View view, MotionEvent motionEvent) {
+                //maze.moveBackward(MOVE_SPEED);
+                return false;
+            }
+        });
+
+        left.setOnHoverListener(new View.OnHoverListener() {
+            @Override
+            public boolean onHover(View view, MotionEvent motionEvent) {
+                //maze.turnLeft(MOVE_SPEED);
+                return false;
+            }
+        });
+
+        right.setOnHoverListener(new View.OnHoverListener() {
+            @Override
+            public boolean onHover(View view, MotionEvent motionEvent) {
+                //maze.turnRight(MOVE_SPEED);
+                return false;
+            }
+        });
     }
 
     @Override
