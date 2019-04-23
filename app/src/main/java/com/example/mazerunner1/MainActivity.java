@@ -20,22 +20,11 @@ public class MainActivity extends AppCompatActivity {
         initUIComponents();
     }
 
-    private void initUIComponents() {
-        final View dimensionsView = getLayoutInflater().inflate(R.layout.activity_dimensions, null);
-        final AlertDialog dimensionsDialog = buildDialog(R.layout.activity_dimensions);
-
-        final View tutorialView = getLayoutInflater().inflate(R.layout.dialog_tutorial, null);
-        final AlertDialog tutorialDialog = buildDialog(R.layout.dialog_tutorial);
-
+    private void initUIComponents() { ;
         final Button play = findViewById(R.id.play);
         final Button create = findViewById(R.id.confirmDimensions);
         final Button tutorial = findViewById(R.id.tutorial);
-        final Button confirmDimensions = dimensionsView.findViewById(R.id.confirmDimensions);
-        final Button exitTutorial = tutorialView.findViewById(R.id.exitTutorial);
-        final EditText width = dimensionsView.findViewById(R.id.width);
-        final EditText height = dimensionsView.findViewById(R.id.height);
 
-        //TODO: Fix dialog boxes.
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,31 +45,9 @@ public class MainActivity extends AppCompatActivity {
         tutorial.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tutorialDialog.show();
+                Intent tutorialIntent = new Intent(MainActivity.this, TutorialActivity.class);
+                startActivity(tutorialIntent);
             }
         });
-
-        exitTutorial.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                tutorialDialog.dismiss();
-            }
-        });
-
-        confirmDimensions.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.d(TAG, "onClick: confirmDimensions clicked.");
-                Intent createIntent = new Intent(MainActivity.this, CreateActivity.class);
-                startActivity(createIntent);
-            }
-        });
-    }
-
-    private AlertDialog buildDialog(int resource) {
-        View mView = getLayoutInflater().inflate(resource, null);
-        AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
-        mBuilder.setView(mView);
-        return mBuilder.create();
     }
 }

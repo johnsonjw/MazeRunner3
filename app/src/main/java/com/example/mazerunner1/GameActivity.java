@@ -42,7 +42,7 @@ public class GameActivity extends AppCompatActivity {
 
     private void initUI() {
         TextView mazeView = findViewById(R.id.mazeView);
-        MazeGame maze = new MazeGame(mazeView.getWidth(), mazeView.getHeight(), null, null)
+        MazeGame maze = new MazeGame(mazeView.getWidth(), mazeView.getHeight(), null, null);
         mazeView.setText(maze.getMazeRender());
 
     }
@@ -51,7 +51,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.gameToolbar);
         setSupportActionBar(toolbar);
         initUI();
     }
