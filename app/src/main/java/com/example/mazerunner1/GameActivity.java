@@ -1,5 +1,6 @@
 package com.example.mazerunner1;
 
+import android.content.pm.ActivityInfo;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -13,6 +14,7 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.TextureView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.mazerunner1.R;
@@ -44,55 +46,60 @@ public class GameActivity extends AppCompatActivity {
         }
     }
 
-    private void initUI() {
-        TextView mazeView = findViewById(R.id.mazeView);
-        TextureView forward = findViewById(R.id.forward);
-        TextureView back = findViewById(R.id.back);
-        TextureView left = findViewById(R.id.left);
-        TextureView right = findViewById(R.id.right);
-        //MazeGame maze = new MazeGame(mazeView.getWidth(), mazeView.getHeight(), null, null);
-        //mazeView.setText(maze.getMazeRender());
-
-        forward.setOnHoverListener(new View.OnHoverListener() {
-            @Override
-            public boolean onHover(View view, MotionEvent motionEvent) {
-                //maze.moveForward(MOVE_SPEED);
-                return false;
-            }
-        });
-
-        back.setOnHoverListener(new View.OnHoverListener() {
-            @Override
-            public boolean onHover(View view, MotionEvent motionEvent) {
-                //maze.moveBackward(MOVE_SPEED);
-                return false;
-            }
-        });
-
-        left.setOnHoverListener(new View.OnHoverListener() {
-            @Override
-            public boolean onHover(View view, MotionEvent motionEvent) {
-                //maze.turnLeft(MOVE_SPEED);
-                return false;
-            }
-        });
-
-        right.setOnHoverListener(new View.OnHoverListener() {
-            @Override
-            public boolean onHover(View view, MotionEvent motionEvent) {
-                //maze.turnRight(MOVE_SPEED);
-                return false;
-            }
-        });
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         Toolbar toolbar = findViewById(R.id.gameToolbar);
         setSupportActionBar(toolbar);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         initUI();
+    }
+
+    private void initUI() {
+        TextView mazeView = findViewById(R.id.mazeView);
+        Button forward = findViewById(R.id.forward);
+        Button back = findViewById(R.id.back);
+        Button left = findViewById(R.id.left);
+        Button right = findViewById(R.id.right);
+        //MazeGame maze = new MazeGame(mazeView.getWidth(), mazeView.getHeight(), null, null);
+        //mazeView.setText(maze.getMazeRender());
+
+        forward.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Log.d(TAG, "onLongClick: Forward pressed.");
+                //maze.moveForward(MOVE_SPEED);
+                return true;
+            }
+        });
+
+        back.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Log.d(TAG, "onLongClick: Backward pressed.");
+                //maze.moveBackward(MOVE_SPEED);
+                return true;
+            }
+        });
+
+        left.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Log.d(TAG, "onLongClick: Left pressed.");
+                //maze.turnLeft(MOVE_SPEED);
+                return true;
+            }
+        });
+
+        right.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                Log.d(TAG, "onLongClick: Right pressed.");
+                //maze.turnRight(MOVE_SPEED);
+                return true;
+            }
+        });
     }
 
     GLSurfaceView.Renderer mazeRenderer = new GLSurfaceView.Renderer() {
