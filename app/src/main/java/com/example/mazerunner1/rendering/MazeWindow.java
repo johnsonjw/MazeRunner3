@@ -34,7 +34,16 @@ public class MazeWindow {
 //        System.out.println("Rendering screen");
         double[] distanceArray = caster.getDistanceArray(renderRay, fov, maze);
         char[][] renderedCharArray = renderer.renderFrom(distanceArray);
+        addDistance(renderedCharArray);
         renderedScreen = converter.charArrayToString(renderedCharArray);
+    }
+
+    private void addDistance(char[][] array) {
+        Coord goalLoc = maze.getGoal();
+        String distance = renderRay.getDistanceTo(goalLoc) + "";
+        for(int x=0; x<3;x++) {
+            array[x][0] = distance.charAt(x);
+        }
     }
 
     //TODO

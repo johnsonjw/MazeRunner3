@@ -13,29 +13,26 @@ public class MazeGame {
         this.maze = maze;
         window = new MazeWindow(width, height, this.player.fieldOfView, this.maze);
         handler = new MovementHandler(this.maze);
+        updateMazeWindow();
     }
 
-    //TODO
     public void turnLeft(double turnSpeed) {
-
+        handler.turn(player, -turnSpeed);
         updateMazeWindow();
     }
 
-    //TODO
     public void turnRight(double turnSpeed) {
-
+        handler.turn(player, turnSpeed);
         updateMazeWindow();
     }
 
-    //TODO
     public void moveForward(double moveSpeed) {
-        player.moveForward(moveSpeed);
+        handler.move(player, moveSpeed);
         updateMazeWindow();
     }
 
-    //TODO
     public void moveBackward(double moveSpeed) {
-        
+        handler.move(player, -moveSpeed);
         updateMazeWindow();
     }
 

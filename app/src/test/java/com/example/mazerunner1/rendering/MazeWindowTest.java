@@ -38,6 +38,7 @@ public class MazeWindowTest {
             squareTiles[i+1][4] = '#';
         }
         squareTiles[2][7] = '#';
+        squareTiles[5][5] = 'g';
 
         Maze mazeOut = new Maze(squareTiles, null);
         System.out.println(mazeOut.toString());

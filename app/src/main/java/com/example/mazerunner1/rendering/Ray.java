@@ -23,6 +23,10 @@ public class Ray {
         return coordOut;
     }
 
+    public double getDistanceTo(Coord coord) {
+        return Math.sqrt(Math.pow((coord.getX()+origin.getX()),2)+Math.pow((coord.getY()+origin.getY()),2));
+    }
+
 
     public Coord getOrigin() {
         return origin;

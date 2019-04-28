@@ -31,6 +31,17 @@ public class Maze {
     public char getTileAt(Coord coord) {
         return tileChars[(int)coord.getX()][(int)coord.getY()];
     }
+    public Coord getGoal() {
+        for(int x = 0; x<tileChars.length;x++) {
+            for(int y = 0; y<tileChars[x].length; y++) {
+                if(tileChars[x][y]=='g') {
+                    return new Coord(x,y);
+                }
+            }
+        }
+        return null;
+    }
+
 
     public String toString() {
         String out="";

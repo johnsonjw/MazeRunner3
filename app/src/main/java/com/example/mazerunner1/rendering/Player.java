@@ -3,37 +3,20 @@ package com.example.mazerunner1.rendering;
 import com.example.mazerunner1.Coord;
 
 public class Player {
-    Coord position;
     double moveSpeed;
     double turnSpeed;
     Ray facingRay;
     double fieldOfView;
 
-    public Player (Coord start, Ray facing, double moveSpeed, double turnSpeed, double fov) {
-        this.position =  start;
-        this.facingRay = facing;
-        this.moveSpeed = moveSpeed;
-        this.turnSpeed = turnSpeed;
-        this.fieldOfView = fov;
-    }
-
     public Player (Ray facing, double moveSpeed, double turnSpeed, double fov) {
-        this.position =  facing.getOrigin();
         this.facingRay = facing;
         this.moveSpeed = moveSpeed;
         this.turnSpeed = turnSpeed;
         this.fieldOfView = fov;
-    }
-
-    public void moveForward(double moveSpeed) {
-        setPosition(facingRay.getCoordAt(moveSpeed));
-    }
-    public void moveBackward(double moveSpeed) {
-        setPosition(facingRay.getCoordAt(-moveSpeed));
     }
 
     public void setPosition(Coord position) {
-        this.position = position;
+        this.facingRay = new Ray(position, this.facingRay.getAngle());
     }
 
     public void setFacingRay(Ray facingRay) {
@@ -43,10 +26,13 @@ public class Player {
 
     //Getter Methods
     public Coord getPosition() {
-        return position;
+        return facingRay.getOrigin();
     }
     public double getMoveSpeed() {
         return moveSpeed;
+    }
+    public double getTurnSpeed() {
+        return turnSpeed;
     }
     public double getFieldOfView() {
         return fieldOfView;

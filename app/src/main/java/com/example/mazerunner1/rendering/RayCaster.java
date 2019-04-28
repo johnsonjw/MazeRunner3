@@ -6,7 +6,7 @@ import com.example.mazerunner1.Maze;
 public class RayCaster {
     private int screenWidth;
 
-    private final double maxRenderDistance = 10;
+    private final double maxRenderDistance = 8;
     private final double renderResolution = .2;
     private final char wallChar = '#';
 
@@ -22,7 +22,7 @@ public class RayCaster {
         double[] outArray = new double[screenWidth];
         double degreesPerColumn = fov/(screenWidth-1);
         for(int offset=0; offset<screenWidth; offset++) {
-            double castingAngle = ray.getAngle() + degreesPerColumn*offset;
+            double castingAngle = ray.getAngle() - (fov/2) + degreesPerColumn*offset;
             Ray rayToCast = new Ray(ray.getOrigin(), castingAngle);
             outArray[offset] = getDistanceToWall(rayToCast, maze);
         }
