@@ -27,7 +27,7 @@ public class MazeConverter {
     }
 
     private void parseFile() throws Exception{
-        String fileString =splitIntoString(file);
+        String fileString = splitIntoString(file);
         StringConverter converter = new StringConverter();
         if(converter.isRectangle(fileString)) {
             char[][] fileArray = converter.StringToCharArray(fileString);
