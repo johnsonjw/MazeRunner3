@@ -6,7 +6,6 @@ import com.example.mazerunner1.rendering.Ray;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-import java.nio.file.ClosedFileSystemException;
 
 public class MazeConverter {
     private final String extension = ".maize";
@@ -34,7 +33,6 @@ public class MazeConverter {
             char[][] fileArray = converter.StringToCharArray(fileString);
             setPlayerFromArray(fileArray);
             setMazeFromArray(fileArray);
-
         }
     }
 
@@ -79,13 +77,14 @@ public class MazeConverter {
         }
         return fileString;
     }
-
     private boolean endsWith(String toCheck, String ending) {
         return toCheck.length()>ending.length()&&
                toCheck.substring(toCheck.length()-ending.length()).equals(ending);
     }
+
     public Maze getMaze() {
-        return maze;}
+        return maze;
+    }
     public Player getPlayer() {
         return player;
     }
