@@ -20,14 +20,19 @@ import android.widget.TextView;
 import com.example.mazerunner1.R;
 import com.example.mazerunner1.rendering.MazeGame;
 import com.example.mazerunner1.rendering.MazeWindow;
+import com.example.mazerunner1.rendering.Player;
+
+import java.io.File;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 public class GameActivity extends AppCompatActivity {
     final static String TAG = "GameActivity";
-    final static double MOVE_SPEED = 0.2;
-    MazeGame maze;
+    private GameSettings gameSettings; //TODO: Get from Intent.
+    private MazeConverter mazeConverter;
+    private File mazeFile; //TODO: Get from Intent.
+    private MazeGame mazeGame;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -53,7 +58,19 @@ public class GameActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.gameToolbar);
         setSupportActionBar(toolbar);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        initGameComponents();
         initUI();
+    }
+
+    private void initGameComponents() {
+        gameSettings = new GameSettings(0.5, 0.4, 0, 70);
+        mazeConverter = new MazeConverter(gameSettings);
+
+        try {
+            mazeConverter.setFile(mazeFile);
+        } catch (Exception e) {
+
+        }
     }
 
     private void initUI() {
@@ -62,14 +79,17 @@ public class GameActivity extends AppCompatActivity {
         Button back = findViewById(R.id.back);
         Button left = findViewById(R.id.left);
         Button right = findViewById(R.id.right);
-        //MazeGame maze = new MazeGame(mazeView.getWidth(), mazeView.getHeight(), null, null);
-        //mazeView.setText(maze.getMazeRender());
+        MazeConverter mazeConverter = new MazeConverter(gameSettings);
+        Player player = mazeConverter.getPlayer();
+        Maze maze = mazeConverter.getMaze();
+        mazeGame = new MazeGame(mazeView.getWidth(), mazeView.getHeight(), maze, player);
+        mazeView.setText(mazeGame.getMazeRender());
 
         forward.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                 Log.d(TAG, "onLongClick: Forward pressed.");
-                //maze.moveForward(MOVE_SPEED);
+                mazeGame.moveForward(gameSettings.getMoveSpeed());
                 return true;
             }
         });
@@ -78,7 +98,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View view) {
                 Log.d(TAG, "onLongClick: Backward pressed.");
-                //maze.moveBackward(MOVE_SPEED);
+                mazeGame.moveBackward(gameSettings.getMoveSpeed());
                 return true;
             }
         });
@@ -87,7 +107,7 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View view) {
                 Log.d(TAG, "onLongClick: Left pressed.");
-                //maze.turnLeft(MOVE_SPEED);
+                mazeGame.turnLeft(gameSettings.getTurnSpeed());
                 return true;
             }
         });
@@ -96,26 +116,9 @@ public class GameActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View view) {
                 Log.d(TAG, "onLongClick: Right pressed.");
-                //maze.turnRight(MOVE_SPEED);
+                mazeGame.turnRight(gameSettings.getTurnSpeed());
                 return true;
             }
         });
     }
-
-    GLSurfaceView.Renderer mazeRenderer = new GLSurfaceView.Renderer() {
-        @Override
-        public void onSurfaceCreated(GL10 gl10, EGLConfig eglConfig) {
-
-        }
-
-        @Override
-        public void onSurfaceChanged(GL10 gl10, int i, int i1) {
-
-        }
-
-        @Override
-        public void onDrawFrame(GL10 gl10) {
-            
-        }
-    };
 }

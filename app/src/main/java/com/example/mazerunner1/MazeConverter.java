@@ -44,6 +44,7 @@ public class MazeConverter {
         } else
             throw new Exception("Player not found");
     }
+
     private void setMazeFromArray(char[][] array) throws Exception {
         Coord goalLoc = findLocOf(array,'g');
         if(goalLoc!=null) {
@@ -63,6 +64,7 @@ public class MazeConverter {
         }
         return null;
     }
+
     private String splitIntoString(File file) throws Exception {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String fileString = "";
@@ -77,6 +79,7 @@ public class MazeConverter {
         }
         return fileString;
     }
+
     private boolean endsWith(String toCheck, String ending) {
         return toCheck.length()>ending.length()&&
                toCheck.substring(toCheck.length()-ending.length()).equals(ending);
@@ -85,6 +88,7 @@ public class MazeConverter {
     public Maze getMaze() {
         return maze;
     }
+
     public Player getPlayer() {
         return player;
     }
