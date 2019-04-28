@@ -39,7 +39,7 @@ public class MazeWindowTest {
         }
         squareTiles[2][7] = '#';
 
-        Maze mazeOut = new Maze(squareTiles);
+        Maze mazeOut = new Maze(squareTiles, null);
         System.out.println(mazeOut.toString());
         return mazeOut;
     }

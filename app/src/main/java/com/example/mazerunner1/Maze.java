@@ -2,8 +2,10 @@ package com.example.mazerunner1;
 
 public class Maze {
     private char[][] tileChars;
-    public Maze(char[][] tilesIn) {
+    Coord startingCoord;
+    public Maze(char[][] tilesIn, Coord startingCoord) {
         tileChars = tilesIn;
+        this.startingCoord = startingCoord;
     }
 
     public boolean contains(int x, int y) {

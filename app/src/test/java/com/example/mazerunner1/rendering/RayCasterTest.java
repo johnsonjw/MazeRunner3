@@ -46,7 +46,7 @@ public class RayCasterTest {
             squareTiles[i+3][6] = '#';
         }
 */
-        Maze mazeOut = new Maze(squareTiles);
+        Maze mazeOut = new Maze(squareTiles, null);
         return mazeOut;
     }
 }

@@ -35,7 +35,7 @@ public class StringConverter {
         }
         return out;
     }
-    private boolean isRectangle(String toCheck) {
+    public boolean isRectangle(String toCheck) {
         String[] split;
         boolean lengthMatch = true;
         split = toCheck.split("\\n");

@@ -15,6 +15,13 @@ public class Player {
         this.fieldOfView = fov;
     }
 
+    public Player (Ray facing, double speed, double fov) {
+        this.position =  facing.getOrigin();
+        this.facingRay = facing;
+        this.speed = speed;
+        this.fieldOfView = fov;
+    }
+
     public void moveForward(double moveSpeed) {
         setPosition(facingRay.getCoordAt(moveSpeed));
     }
