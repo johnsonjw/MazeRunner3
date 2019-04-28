@@ -40,7 +40,7 @@ public class MazeConverter {
         Coord playerLoc = findLocOf(array,'p');
         if(playerLoc!=null) {
             Ray facingRay = new Ray(playerLoc, settings.getStartingAngle());
-            player = new Player(facingRay, settings.getMoveSpeed(), settings.getFov());
+            player = new Player(facingRay, settings.getMoveSpeed(), settings.getTurnSpeed(), settings.getFov());
         } else
             throw new Exception("Player not found");
     }
