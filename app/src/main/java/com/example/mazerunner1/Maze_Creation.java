@@ -1,7 +1,7 @@
-package com.example.mazerunner1;
+//package com.example.mazerunner1;
 
 
-public class Maze_Creation extends  AppCompatActivity implements OnClickListener {
+/*public class Maze_Creation extends  AppCompatActivity implements OnClickListener {
     private LinearLayout parent;
     private Button b1;
     private Button b2;
@@ -32,7 +32,7 @@ public class Maze_Creation extends  AppCompatActivity implements OnClickListener
                 b1.setText()
             }
         }
-    }
+    }*/
 
    /* public String toString() {
         String out = "";
@@ -46,7 +46,7 @@ public class Maze_Creation extends  AppCompatActivity implements OnClickListener
         return  out;
     }*/
 
-}
+//}
 
 
 
