@@ -6,11 +6,13 @@ public class MazeGame {
     MazeWindow window;
     Maze maze;
     Player player;
+    MovementHandler handler;
 
     public MazeGame(int width, int height, Maze maze, Player player) {
         this.player = player;
         this.maze = maze;
         window = new MazeWindow(width, height, this.player.fieldOfView, this.maze);
+        handler = new MovementHandler(this.maze);
     }
 
     //TODO
@@ -33,7 +35,7 @@ public class MazeGame {
 
     //TODO
     public void moveBackward(double moveSpeed) {
-        player.moveBackward(moveSpeed);
+        
         updateMazeWindow();
     }
 

@@ -34,10 +34,10 @@ public class AsciiRenderer {
     }
 
     private char[] addWallTo(char[] input, int wallHeight) {
-        System.out.println("adding wall of height " + wallHeight);
+//        System.out.println("adding wall of height " + wallHeight);
         char[] output = input;
         for(int i=0;i<wallHeight/2;i++) {
-            System.out.println("i="+i);
+//            System.out.println("i="+i);
             if(output.length>(horizonLine+i))
                 output[horizonLine+i]='#';
             if(horizonLine-1>=0)
@@ -46,22 +46,6 @@ public class AsciiRenderer {
         return output;
     }
 
-//    private char[] addWallTo(char[] input, int wallHeight) {
-//        System.out.println("adding wall of height " + wallHeight);
-//        char[] output = input;
-//        int toPlace = horizonLine;
-//        for(int i=0;i<wallHeight;i++) {
-//            if(i%2==0) {
-//                toPlace-=i;
-//            } else {
-//                toPlace+=i;
-//            }
-//            if(toPlace>=0&&output.length>toPlace) {
-//                output[toPlace] = '#';
-//            }
-//        }
-//        return output;
-//    }
 
     private char[] getEmptyColumn(int height) {
         char[] out = new char[height];
