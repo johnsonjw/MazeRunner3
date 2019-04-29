@@ -19,6 +19,7 @@ import java.util.*;
 
 
 public class Maze_Creation extends  AppCompatActivity implements AdapterView.OnItemSelectedListener  {
+    public StringConverter convert = new StringConverter();
     private LinearLayout parent;
     private Button b1;
     private Button b2;
@@ -49,7 +50,6 @@ public class Maze_Creation extends  AppCompatActivity implements AdapterView.OnI
         Button[][] gridview = new Button[10][10];
         for (int i = 0; i < x; i++) {
             for (int b = 0; b < y; b++) {
-
 
 
             }
@@ -97,7 +97,7 @@ public class Maze_Creation extends  AppCompatActivity implements AdapterView.OnI
 
 
     public String toString() {
-       return "";
+       return convert.charArrayToString(preset());
     }
     public void saveTextasFile(String filename, String content){
         String fileName = filename + ".maize";
