@@ -2,6 +2,7 @@
     <string name="app_name">Maze Runner</string>
     <string name="title_activity_game">GameActivity</string>
     <string name="title_activity_create">CreateActivity</string>
+    <string name="empty_list">You haven\'t created any maps yet!</string>
 
     <string-array name = "mapIcons">
         <item>#</item>

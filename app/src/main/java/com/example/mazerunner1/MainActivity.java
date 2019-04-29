@@ -28,9 +28,8 @@ public class MainActivity extends AppCompatActivity {
         play.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO: Start custom maze selection activity.
-                Intent gameIntent = new Intent(MainActivity.this, GameActivity.class);
-                startActivity(gameIntent);
+                Intent selectionIntent = new Intent(MainActivity.this, MazeSelectionActivity.class);
+                startActivity(selectionIntent);
             }
         });
 

@@ -64,7 +64,11 @@ public class GameActivity extends AppCompatActivity {
 
     private void initGameComponents() {
         gameSettings = new GameSettings(0.5, 0.4, 0, 70);
-        mazeFile = (File) getIntent().getExtras().get("MAZE_FILE");
+        try {
+            mazeFile = (File) getIntent().getExtras().get("MAZE_FILE");
+        } catch (Exception e) {
+            Utilities.notifyMessage(GameActivity.this, "Could not find maze file.");
+        }
         mazeConverter = new MazeConverter(gameSettings);
         try {
             mazeConverter.setFile(mazeFile);
