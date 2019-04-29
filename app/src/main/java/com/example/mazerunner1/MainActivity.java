@@ -1,6 +1,7 @@
 package com.example.mazerunner1;
 
 import android.content.Intent;
+import android.os.Environment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
     final static String TAG = "MainActivity";
@@ -18,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initUIComponents();
+        String path = Environment.getExternalStorageDirectory().toString()+"/mazes";
+        File directory = new File(path);
+        Log.d(TAG, "onCreate: Directory: " + directory.toURI());
     }
 
     private void initUIComponents() { ;
