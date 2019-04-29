@@ -1,6 +1,7 @@
 
 package com.example.mazerunner1;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -9,6 +10,11 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.*;
 
 
@@ -40,14 +46,11 @@ public class Maze_Creation extends  AppCompatActivity implements AdapterView.OnI
 
 
     public ArrayList<String> createDynamicButtons(int x,int y) {
+        Button[][] gridview = new Button[10][10];
         for (int i = 0; i < x; i++) {
-            b1 = new Button(this);
-            gridLayout.add((String)b1.getText());
-            b1.setId(i + 1);
             for (int b = 0; b < y; b++) {
-                b2 = new Button(this);
-                gridLayout.add((String)b2.getText());
-                b2.setId(b + 1);
+
+
 
             }
         }
@@ -65,9 +68,9 @@ public class Maze_Creation extends  AppCompatActivity implements AdapterView.OnI
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        String text = parent.getItemIdAtPosition(position).toString();
-        Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
-        b1.setText(text);
+       // String text = parent.getItemIdAtPosition(position).toString();
+      //  Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
+       // b1.setText(text);
 
     }
 
@@ -75,14 +78,45 @@ public class Maze_Creation extends  AppCompatActivity implements AdapterView.OnI
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
+    public char[][] preset(){
+        char[][] easy = new char[10][10];
+        for (int i = 0; i < 10; i++) {
+            for (int b = 0; b < 10; b++) {
+                if(easy[i].equals(0) || easy[i].equals(10)){
+                    easy[i][b] = '#';
+                }
+                else{
+                    easy[i][b] ='-';
+                }
+            }
+        }
+        easy[1][9] ='p';
+        easy[8][5] ='g';
+        return easy;
+    }
 
 
     public String toString() {
        return "";
     }
+    public void saveTextasFile(String filename, String content){
+        String fileName = filename + ".maize";
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), fileName);
+        try{
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(content.getBytes());
+            fos.close();
+        }catch (FileNotFoundException e){
+            e.printStackTrace();
+        }catch (IOException e){
+            e.printStackTrace();
+            Toast.makeText(this, "Error Saving",Toast.LENGTH_SHORT).show();
+        }
+
+    }
 
 
-//}
+
 }
 
 
