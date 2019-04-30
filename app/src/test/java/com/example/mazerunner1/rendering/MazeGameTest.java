@@ -10,19 +10,21 @@ public class MazeGameTest {
 
     @Test
     public void squareDance() {
-        Ray renderRay = new Ray(1,1,0);
+        Ray renderRay = new Ray(1.5,1.5,0);
         Player player = new Player(renderRay,1,10,70);
         MazeGame mazeGame = new MazeGame(80,20,makeSquareMaze(),player);
         System.out.println(mazeGame.getMazeRender());
-        for(int x=0;x<5;x++) {
+        for(int x=0;x<4;x++) {
             for(int y=0;y<5;y++) {
                 mazeGame.moveForward(.5);
                 System.out.println(mazeGame.getMazeRender());
             }
+            System.out.println("TURNING START");
             for(int z=0;z<4;z++) {
                 mazeGame.turnRight(1);
                 System.out.println(mazeGame.getMazeRender());
             }
+            System.out.println("TURNING END");
         }
     }
 

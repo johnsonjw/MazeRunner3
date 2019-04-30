@@ -13,7 +13,7 @@ public class MazeWindowTest {
         MazeWindow window = new MazeWindow(80,20, 60, makeSquareMaze());
         for(int i=0;i<5;i++) {
             int renderAngle=0;
-            Ray renderRay = new Ray(1,1,renderAngle+(10*i));
+            Ray renderRay = new Ray(1,1.1,renderAngle+(10*i));
             window.setRenderRay(renderRay);
             window.render();
             System.out.println(window.getTextScreen());

@@ -4,12 +4,14 @@ public class AsciiRenderer {
 
     private int height;
     private int horizonLine;
-    private double maxRender = 10f;
+    private double maxRender = 8f;
+
+    //$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\|()1{}[]?-_+~<>i!lI;:,"^`'.
 
     //TODO
     public AsciiRenderer(int height) {
         this.height = height;
-        this.horizonLine = (int)Math.round(height * .6);
+        this.horizonLine = (int)Math.round(height * .5);
         //System.out.println("horizonLine=" +horizonLine);
     }
 
@@ -33,15 +35,26 @@ public class AsciiRenderer {
         return column;
     }
 
-    private char[] addWallTo(char[] input, int wallHeight) {
+    private char[] addWallTo(char[] input, float wallHeight) {
 //        System.out.println("adding wall of height " + wallHeight);
         char[] output = input;
+        char wallChar;
+        double relHeight = wallHeight/height;
+        if(relHeight<.1) {
+            wallChar = '*';
+        } else if(relHeight<.4) {
+            wallChar = '$';
+        } else if(relHeight<.8) {
+            wallChar = '@';
+        } else {
+            wallChar = '#';
+        }
         for(int i=0;i<wallHeight/2;i++) {
 //            System.out.println("i="+i);
             if(output.length>(horizonLine+i))
-                output[horizonLine+i]='#';
+                output[horizonLine+i]=wallChar;
             if(horizonLine-1>=0)
-                output[horizonLine-i]='#';
+                output[horizonLine-i]=wallChar;
         }
         return output;
     }
@@ -56,9 +69,9 @@ public class AsciiRenderer {
             } else if(floorSpace < .2) {
                 out[i] = '.';
             } else if(floorSpace< .6) {
-                out[i] = '-';
+                out[i] = ':';
             } else {
-                out[i] = 'X';
+                out[i] = ';';
             }
         }
         return out;

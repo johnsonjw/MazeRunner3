@@ -12,7 +12,7 @@ public class AsciiRendererTest {
     @Test
     public void renderFrom() {
         StringConverter converter = new StringConverter();
-        for (int i = 0; i<12; i++) {
+        for (float i = 0; i<12; i+=.3) {
             System.out.println(converter.charLineToString(renderer.renderColumn(i)));
         }
 
