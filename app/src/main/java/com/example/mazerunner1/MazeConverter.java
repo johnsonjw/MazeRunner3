@@ -20,10 +20,7 @@ public class MazeConverter {
 
     public void setFile(File file) throws Exception {
         this.file = file;
-        if(!endsWith(file.getName(), extension))
-            throw new Exception("wrong extension");
-        else
-            parseFile();
+        parseFile();
     }
 
     private void parseFile() throws Exception{

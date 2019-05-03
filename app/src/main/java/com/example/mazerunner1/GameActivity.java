@@ -22,7 +22,13 @@ import com.example.mazerunner1.rendering.MazeGame;
 import com.example.mazerunner1.rendering.MazeWindow;
 import com.example.mazerunner1.rendering.Player;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
@@ -31,8 +37,10 @@ public class GameActivity extends AppCompatActivity {
     final static String TAG = "GameActivity";
     private GameSettings gameSettings; //TODO: Get from Intent.
     private MazeConverter mazeConverter;
-    private File mazeFile; //TODO: Get from Intent.
+    private File mazeFile;
     private MazeGame mazeGame;
+    private Player player;
+    private Maze maze;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,15 +73,45 @@ public class GameActivity extends AppCompatActivity {
     private void initGameComponents() {
         gameSettings = new GameSettings(0.5, 0.4, 0, 70);
         try {
-            mazeFile = (File) getIntent().getExtras().get("MAZE_FILE");
+            String mazeFilename =  (String) getIntent().getExtras().get("MAZE_FILE");
+            InputStream inputStream = getAssets().open(mazeFilename);
+            BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
+            StringBuilder total = new StringBuilder();
+            for (String line; (line = r.readLine()) != null; ) {
+                total.append(line).append('\n');
+            }
+            String mazeData = total.toString();
+            mazeFile = new File(mazeData);
         } catch (Exception e) {
             Utilities.notifyMessage(GameActivity.this, "Could not find maze file.");
         }
         mazeConverter = new MazeConverter(gameSettings);
         try {
             mazeConverter.setFile(mazeFile);
+            player = mazeConverter.getPlayer();
+            maze = mazeConverter.getMaze();
         } catch (Exception e) {
             Utilities.notifyMessage(GameActivity.this, "Could not find maze file.");
+        }
+    }
+
+    private void writeMazeToFile(InputStream is, File file) throws IOException {
+        FileOutputStream fos = null;
+        try {
+            byte[] data = new byte[2048];
+            int nbread = 0;
+            fos = new FileOutputStream(file);
+            while((nbread=is.read(data))>-1){
+                fos.write(data,0,nbread);
+            }
+        }
+        catch (Exception ex) {
+            Utilities.notifyException(this, ex);
+        }
+        finally{
+            if (fos != null){
+                fos.close();
+            }
         }
     }
 
@@ -83,9 +121,6 @@ public class GameActivity extends AppCompatActivity {
         Button back = findViewById(R.id.back);
         Button left = findViewById(R.id.left);
         Button right = findViewById(R.id.right);
-        MazeConverter mazeConverter = new MazeConverter(gameSettings);
-        Player player = mazeConverter.getPlayer();
-        Maze maze = mazeConverter.getMaze();
         mazeGame = new MazeGame(mazeView.getWidth(), mazeView.getHeight(), maze, player);
         mazeView.setText(mazeGame.getMazeRender());
 
