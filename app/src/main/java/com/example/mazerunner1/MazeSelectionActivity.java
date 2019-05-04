@@ -38,12 +38,6 @@ public class MazeSelectionActivity extends AppCompatActivity {
         } catch (IOException e) {
             Utilities.notifyException(this, e);
         }
-        //mazeFiles = mazeFolder.listFiles();
-        //String[] mazeFileNames = new String[mazeFiles.length];
-        //for (int i = 0; i < mazeFileNames.length; i++) {
-        //    mazeFileNames[i] = mazeFiles[i].getName();
-        //    Log.d(TAG, "initListItems: Adding item to mazeFiles.");
-        //}
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, files);
         if (adapter.getCount() == 0) mazes.setVisibility(View.GONE);
         mazes.setAdapter(adapter);

@@ -1,5 +1,7 @@
 package com.example.mazerunner1;
 
+import android.util.Log;
+
 import com.example.mazerunner1.rendering.Player;
 import com.example.mazerunner1.rendering.Ray;
 
@@ -8,6 +10,7 @@ import java.io.File;
 import java.io.FileReader;
 
 public class MazeConverter {
+    private static final String TAG = "MazeConverter";
     private final String extension = ".maize";
     private GameSettings settings;
     private Maze maze;
@@ -20,14 +23,16 @@ public class MazeConverter {
 
     public void setFile(File file) throws Exception {
         this.file = file;
-        parseFile();
+        //parseFile();
     }
 
-    private void parseFile() throws Exception{
-        String fileString = splitIntoString(file);
+    public void parseMaze(String maze) throws Exception{
+        Log.d(TAG, "parseFile: File is found? " + (file != null));
+        //String fileString = splitIntoString(file);
         StringConverter converter = new StringConverter();
-        if(converter.isRectangle(fileString)) {
-            char[][] fileArray = converter.StringToCharArray(fileString);
+        if(converter.isRectangle(maze)) {
+            Log.d(TAG, "parseFile: Setting player and maze.");
+            char[][] fileArray = converter.StringToCharArray(maze);
             setPlayerFromArray(fileArray);
             setMazeFromArray(fileArray);
         }
@@ -36,6 +41,7 @@ public class MazeConverter {
     private void setPlayerFromArray(char[][] array) throws Exception {
         Coord playerLoc = findLocOf(array,'p');
         if(playerLoc!=null) {
+            Log.d(TAG, "setPlayerFromArray: Setting player from array.");
             Ray facingRay = new Ray(playerLoc, settings.getStartingAngle());
             player = new Player(facingRay, settings.getMoveSpeed(), settings.getTurnSpeed(), settings.getFov());
         } else
@@ -45,6 +51,7 @@ public class MazeConverter {
     private void setMazeFromArray(char[][] array) throws Exception {
         Coord goalLoc = findLocOf(array,'g');
         if(goalLoc!=null) {
+            Log.d(TAG, "setMazeFromArray: Setting maze from array.");
             maze = new Maze(array, player.getPosition());
         } else
             throw new Exception("Goal not found");
@@ -52,9 +59,9 @@ public class MazeConverter {
     }
 
     private Coord findLocOf(char[][] array, char toFind) {
-        for(int x = 0; x<array.length;x++) {
-            for(int y = 0; y<array.length; y++) {
-                if(array[x][y]==toFind) {
+        for(int x = 0; x < array.length; x++) {
+            for(int y = 0; y < array.length; y++) {
+                if(array[x][y] == toFind) {
                     return new Coord(x,y);
                 }
             }

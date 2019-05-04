@@ -35,7 +35,7 @@ import javax.microedition.khronos.opengles.GL10;
 
 public class GameActivity extends AppCompatActivity {
     final static String TAG = "GameActivity";
-    private GameSettings gameSettings; //TODO: Get from Intent.
+    private GameSettings gameSettings;
     private MazeConverter mazeConverter;
     private File mazeFile;
     private MazeGame mazeGame;
@@ -72,46 +72,22 @@ public class GameActivity extends AppCompatActivity {
 
     private void initGameComponents() {
         gameSettings = new GameSettings(0.5, 0.4, 0, 70);
+        String mazeFilename =  (String) getIntent().getExtras().get("MAZE_FILE");
         try {
-            String mazeFilename =  (String) getIntent().getExtras().get("MAZE_FILE");
-            InputStream inputStream = getAssets().open(mazeFilename);
+            InputStream inputStream = getAssets().open("mazes/" + mazeFilename);
             BufferedReader r = new BufferedReader(new InputStreamReader(inputStream));
             StringBuilder total = new StringBuilder();
             for (String line; (line = r.readLine()) != null; ) {
                 total.append(line).append('\n');
             }
             String mazeData = total.toString();
-            mazeFile = new File(mazeData);
-        } catch (Exception e) {
-            Utilities.notifyMessage(GameActivity.this, "Could not find maze file.");
-        }
-        mazeConverter = new MazeConverter(gameSettings);
-        try {
-            mazeConverter.setFile(mazeFile);
+            mazeConverter = new MazeConverter(gameSettings);
+            mazeConverter.parseMaze(mazeData);
             player = mazeConverter.getPlayer();
             maze = mazeConverter.getMaze();
         } catch (Exception e) {
-            Utilities.notifyMessage(GameActivity.this, "Could not find maze file.");
-        }
-    }
-
-    private void writeMazeToFile(InputStream is, File file) throws IOException {
-        FileOutputStream fos = null;
-        try {
-            byte[] data = new byte[2048];
-            int nbread = 0;
-            fos = new FileOutputStream(file);
-            while((nbread=is.read(data))>-1){
-                fos.write(data,0,nbread);
-            }
-        }
-        catch (Exception ex) {
-            Utilities.notifyException(this, ex);
-        }
-        finally{
-            if (fos != null){
-                fos.close();
-            }
+            Log.d(TAG, "initGameComponents: " + e.toString());
+            Utilities.notifyException(this, e);
         }
     }
 
