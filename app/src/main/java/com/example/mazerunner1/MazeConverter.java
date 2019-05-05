@@ -35,10 +35,11 @@ public class MazeConverter {
     private void setPlayerFromArray(char[][] array) throws Exception {
         Coord playerLoc = findLocOf(array,'p');
         if(playerLoc!=null) {
-            System.out.println("setPlayerFromArray: Setting player from array.");
+            Log.i("MazeConverter", "setPlayerFromArray: Setting player from array.");
             Ray facingRay = new Ray(playerLoc, settings.getStartingAngle());
             player = new Player(facingRay, settings.getMoveSpeed(), settings.getTurnSpeed(), settings.getFov());
         } else
+            Log.i("MazeConverter","Player not found");
             throw new Exception("Player not found");
     }
 
@@ -47,6 +48,7 @@ public class MazeConverter {
         if(goalLoc!=null) {
             maze = new Maze(array, player.getPosition());
         } else
+            Log.i("MazeConverter","Goal not found");
             throw new Exception("Goal not found");
 
     }
@@ -76,12 +78,7 @@ public class MazeConverter {
         }
         return fileString;
     }
-
-    private boolean endsWith(String toCheck, String ending) {
-        return toCheck.length()>ending.length()&&
-               toCheck.substring(toCheck.length()-ending.length()).equals(ending);
-    }
-
+    
     public Maze getMaze() {
         return maze;
     }

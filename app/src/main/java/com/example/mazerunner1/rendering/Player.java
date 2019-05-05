@@ -6,7 +6,7 @@ public class Player {
     double moveSpeed;
     double turnSpeed;
     Ray facingRay;
-    double fieldOfView;
+     double fieldOfView;
 
     public Player (Ray facing, double moveSpeed, double turnSpeed, double fov) {
         this.facingRay = facing;

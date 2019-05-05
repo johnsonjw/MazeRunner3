@@ -11,7 +11,7 @@ public class MazeGame {
     public MazeGame(int width, int height, Maze maze, Player player) {
         this.player = player;
         this.maze = maze;
-        window = new MazeWindow(width, height, this.player.fieldOfView, this.maze);
+        window = new MazeWindow(width, height, this.player.getFieldOfView(), this.maze);
         handler = new MovementHandler(this.maze);
         updateMazeWindow();
     }
