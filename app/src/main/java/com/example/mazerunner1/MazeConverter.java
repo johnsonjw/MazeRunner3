@@ -14,24 +14,18 @@ public class MazeConverter {
     private final String extension = ".maize";
     private GameSettings settings;
     private Maze maze;
-    private File file;
     private Player player;
 
     public MazeConverter(GameSettings settings) {
         this.settings = settings;
     }
 
-    public void setFile(File file) throws Exception {
-        this.file = file;
-        //parseFile();
-    }
 
     public void parseMaze(String maze) throws Exception{
-        Log.d(TAG, "parseFile: File is found? " + (file != null));
         //String fileString = splitIntoString(file);
         StringConverter converter = new StringConverter();
         if(converter.isRectangle(maze)) {
-            Log.d(TAG, "parseFile: Setting player and maze.");
+            System.out.println("parseFile: Setting player and maze.");
             char[][] fileArray = converter.StringToCharArray(maze);
             setPlayerFromArray(fileArray);
             setMazeFromArray(fileArray);
@@ -41,7 +35,7 @@ public class MazeConverter {
     private void setPlayerFromArray(char[][] array) throws Exception {
         Coord playerLoc = findLocOf(array,'p');
         if(playerLoc!=null) {
-            Log.d(TAG, "setPlayerFromArray: Setting player from array.");
+            System.out.println("setPlayerFromArray: Setting player from array.");
             Ray facingRay = new Ray(playerLoc, settings.getStartingAngle());
             player = new Player(facingRay, settings.getMoveSpeed(), settings.getTurnSpeed(), settings.getFov());
         } else
@@ -51,7 +45,6 @@ public class MazeConverter {
     private void setMazeFromArray(char[][] array) throws Exception {
         Coord goalLoc = findLocOf(array,'g');
         if(goalLoc!=null) {
-            Log.d(TAG, "setMazeFromArray: Setting maze from array.");
             maze = new Maze(array, player.getPosition());
         } else
             throw new Exception("Goal not found");
@@ -60,7 +53,7 @@ public class MazeConverter {
 
     private Coord findLocOf(char[][] array, char toFind) {
         for(int x = 0; x < array.length; x++) {
-            for(int y = 0; y < array.length; y++) {
+            for(int y = 0; y < array[x].length; y++) {
                 if(array[x][y] == toFind) {
                     return new Coord(x,y);
                 }
@@ -69,7 +62,7 @@ public class MazeConverter {
         return null;
     }
 
-    private String splitIntoString(File file) throws Exception {
+    public String splitIntoString(File file) throws Exception {
         BufferedReader reader = new BufferedReader(new FileReader(file));
         String fileString = "";
         boolean atStart = true;
