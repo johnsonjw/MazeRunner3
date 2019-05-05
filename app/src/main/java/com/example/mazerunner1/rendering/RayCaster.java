@@ -1,11 +1,15 @@
 package com.example.mazerunner1.rendering;
 
+import android.util.Log;
+
 import com.example.mazerunner1.Coord;
 import com.example.mazerunner1.Maze;
 
-public class RayCaster {
-    private int screenWidth;
+import java.lang.annotation.Target;
 
+public class RayCaster {
+    private static final String TAG = "RayCaster";
+    private int screenWidth;
     private final double maxRenderDistance = 8;
     private final double renderResolution = .2;
     private final char wallChar = '#';
@@ -17,10 +21,10 @@ public class RayCaster {
     }
 
     public double[] getDistanceArray(Ray ray, double fov, Maze maze) {
-//        System.out.println("getDistanceArray(" + ray.toString() + ")");
-//        System.out.println("fov = " + fov);
+        Log.d(TAG,"fov = " + fov);
         double[] outArray = new double[screenWidth];
         double degreesPerColumn = fov/(screenWidth-1);
+        Log.d(TAG,"outArray of length " + outArray.length + ", degreesPerColumn=" +degreesPerColumn);
         for(int offset=0; offset<screenWidth; offset++) {
             double castingAngle = ray.getAngle() - (fov/2) + degreesPerColumn*offset;
             Ray rayToCast = new Ray(ray.getOrigin(), castingAngle);

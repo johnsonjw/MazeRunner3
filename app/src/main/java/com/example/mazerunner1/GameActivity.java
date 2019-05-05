@@ -103,7 +103,9 @@ public class GameActivity extends AppCompatActivity {
         Button back = findViewById(R.id.back);
         Button left = findViewById(R.id.left);
         Button right = findViewById(R.id.right);
+        Log.d(TAG,"initUI: Making MazeGame of size " + mazeView.getWidth() + "x" + mazeView.getHeight() );
         mazeGame = new MazeGame(mazeView.getWidth(), mazeView.getHeight(), maze, player);
+
         mazeView.setText(mazeGame.getMazeRender());
 
         forward.setOnLongClickListener(new View.OnLongClickListener() {

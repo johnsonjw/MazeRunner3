@@ -1,28 +1,30 @@
 package com.example.mazerunner1.rendering;
 
+import android.util.Log;
+
 import com.example.mazerunner1.Coord;
 import com.example.mazerunner1.Maze;
 import com.example.mazerunner1.StringConverter;
 
 public class MazeWindow {
-
+    private static final String TAG = "MazeWindow";
     private int xSize;
     private int ySize;
     private double fov;
-    AsciiRenderer renderer;
-    RayCaster caster;
-    StringConverter converter = new StringConverter();
+    private AsciiRenderer renderer;
+    private RayCaster caster;
+    private StringConverter converter = new StringConverter();
     private String renderedScreen;
     private Ray renderRay;
-    Maze maze;
+    private Maze maze;
 
     public MazeWindow(int width, int height, double fov, Maze maze) {
         this.xSize = width;
         this.ySize = height;
         this.fov = fov;
         this.maze = maze;
-        renderer = new AsciiRenderer(height);
-        caster =  new RayCaster(width);
+        renderer = new AsciiRenderer(ySize);
+        caster =  new RayCaster(xSize);
     }
 
     //TODO
@@ -31,8 +33,8 @@ public class MazeWindow {
     }
 
     public void render() {
-        //System.out.println("Rendering screen");
         double[] distanceArray = caster.getDistanceArray(renderRay, fov, maze);
+        Log.d(TAG,"render() on distanceArray of length " + distanceArray.length);
         char[][] renderedCharArray = renderer.renderFrom(distanceArray);
         addDistance(renderedCharArray);
         renderedScreen = converter.charArrayToString(renderedCharArray);
