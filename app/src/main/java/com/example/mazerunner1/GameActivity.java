@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -71,7 +72,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initGameComponents() {
-        gameSettings = new GameSettings(0.5, 0.4, 0, 70);
+        gameSettings = new GameSettings(1, 1, 0, 70);
         String mazeFilename =  (String) getIntent().getExtras().get("MAZE_FILE");
         try {
             InputStream inputStream = getAssets().open("mazes/" + mazeFilename);
@@ -98,13 +99,17 @@ public class GameActivity extends AppCompatActivity {
 
     private void initUI() {
         Log.d(TAG, "initUI: this.player is null? " + (this.player == null));
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int height = displayMetrics.heightPixels;
+        int width = displayMetrics.widthPixels;
         TextView mazeView = findViewById(R.id.mazeView);
         Button forward = findViewById(R.id.forward);
         Button back = findViewById(R.id.back);
         Button left = findViewById(R.id.left);
         Button right = findViewById(R.id.right);
-        Log.d(TAG,"initUI: Making MazeGame of size " + mazeView.getWidth() + "x" + mazeView.getHeight() );
-        mazeGame = new MazeGame(mazeView.getWidth(), mazeView.getHeight(), maze, player);
+        Log.d(TAG,"initUI: Making MazeGame of size " + width + "x" + height );
+        mazeGame = new MazeGame(50, 50, maze, player);
 
         mazeView.setText(mazeGame.getMazeRender());
 
