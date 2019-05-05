@@ -1,6 +1,9 @@
 package com.example.mazerunner1;
 
+import android.util.Log;
+
 public class Maze {
+    private static final String TAG = "Maze";
     private char[][] tileChars;
     Coord startingCoord;
     public Maze(char[][] tilesIn, Coord startingCoord) {
@@ -35,6 +38,7 @@ public class Maze {
         for(int x = 0; x<tileChars.length;x++) {
             for(int y = 0; y<tileChars[x].length; y++) {
                 if(tileChars[x][y]=='g') {
+                    Log.d(TAG, "getGoal: goal found at" + x + "," + y);
                     return new Coord(x,y);
                 }
             }

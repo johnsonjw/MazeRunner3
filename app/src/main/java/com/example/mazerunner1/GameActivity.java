@@ -81,11 +81,15 @@ public class GameActivity extends AppCompatActivity {
                 total.append(line).append('\n');
             }
             String mazeData = total.toString();
-            GameSettings test = new GameSettings(0.5, 0.4, 0, 70);
-            mazeConverter = new MazeConverter(test);
+            Log.d(TAG, "initGameComponents: gameSettings is null? " + (gameSettings == null));
+            mazeConverter = new MazeConverter(gameSettings);
+            Log.d(TAG, "initGameComponents: " + gameSettings.getFov());
             mazeConverter.parseMaze(mazeData);
+            Log.d(TAG, "initGameComponents: Maze parsed.");
             player = mazeConverter.getPlayer();
+            Log.d(TAG, "initGameComponents: Player got.");
             maze = mazeConverter.getMaze();
+            Log.d(TAG, "initGameComponents: Maze got.");
         } catch (Exception e) {
             Log.d(TAG, "initGameComponents: " + e.toString());
             Utilities.notifyException(this, e);
@@ -93,6 +97,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        Log.d(TAG, "initUI: this.player is null? " + (this.player == null));
         TextView mazeView = findViewById(R.id.mazeView);
         Button forward = findViewById(R.id.forward);
         Button back = findViewById(R.id.back);
