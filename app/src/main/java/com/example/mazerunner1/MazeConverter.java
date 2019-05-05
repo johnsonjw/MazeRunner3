@@ -38,19 +38,20 @@ public class MazeConverter {
             Log.i("MazeConverter", "setPlayerFromArray: Setting player from array.");
             Ray facingRay = new Ray(playerLoc, settings.getStartingAngle());
             player = new Player(facingRay, settings.getMoveSpeed(), settings.getTurnSpeed(), settings.getFov());
-        } else
-            Log.i("MazeConverter","Player not found");
+        } else {
+            Log.i("MazeConverter", "Player not found");
             throw new Exception("Player not found");
+        }
     }
 
     private void setMazeFromArray(char[][] array) throws Exception {
         Coord goalLoc = findLocOf(array,'g');
         if(goalLoc!=null) {
             maze = new Maze(array, player.getPosition());
-        } else
-            Log.i("MazeConverter","Goal not found");
+        } else {
+            Log.i("MazeConverter", "Goal not found");
             throw new Exception("Goal not found");
-
+        }
     }
 
     private Coord findLocOf(char[][] array, char toFind) {
