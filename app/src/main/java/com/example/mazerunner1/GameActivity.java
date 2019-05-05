@@ -81,7 +81,8 @@ public class GameActivity extends AppCompatActivity {
                 total.append(line).append('\n');
             }
             String mazeData = total.toString();
-            mazeConverter = new MazeConverter(gameSettings);
+            GameSettings test = new GameSettings(0.5, 0.4, 0, 70);
+            mazeConverter = new MazeConverter(test);
             mazeConverter.parseMaze(mazeData);
             player = mazeConverter.getPlayer();
             maze = mazeConverter.getMaze();
