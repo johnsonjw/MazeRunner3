@@ -107,7 +107,7 @@ public class Maze_Creation extends  AppCompatActivity implements AdapterView.OnI
             fos.write(content.getBytes());
             fos.close();
         }catch (FileNotFoundException e){
-            e.printStackTrace();
+            e.printStackTrace(); 
         }catch (IOException e){
             e.printStackTrace();
             Toast.makeText(this, "Error Saving",Toast.LENGTH_SHORT).show();
