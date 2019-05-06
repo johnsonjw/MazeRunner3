@@ -47,6 +47,7 @@ public class MazeSelectionActivity extends AppCompatActivity {
                 Intent toGame = new Intent(MazeSelectionActivity.this, GameActivity.class);
                 toGame.putExtra("MAZE_FILE", files[i]);
                 startActivity(toGame);
+                finish();
             }
         });
     }

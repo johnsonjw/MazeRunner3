@@ -24,22 +24,24 @@
 
     <Button
         android:id="@+id/forward"
-        android:layout_width="315dp"
-        android:layout_height="188dp"
+        android:layout_width="290dp"
+        android:layout_height="168dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:background="@android:color/transparent"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/mazeView" />
 
     <Button
         android:id="@+id/back"
-        android:layout_width="319dp"
-        android:layout_height="171dp"
+        android:layout_width="291dp"
+        android:layout_height="161dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginEnd="8dp"
@@ -48,13 +50,15 @@
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/forward" />
+        app:layout_constraintTop_toBottomOf="@+id/forward"
+        app:layout_constraintVertical_bias="0.466" />
 
     <Button
         android:id="@+id/left"
-        android:layout_width="208dp"
-        android:layout_height="362dp"
+        android:layout_width="184dp"
+        android:layout_height="326dp"
         android:background="@android:color/transparent"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -64,8 +68,8 @@
 
     <Button
         android:id="@+id/right"
-        android:layout_width="207dp"
-        android:layout_height="360dp"
+        android:layout_width="184dp"
+        android:layout_height="337dp"
         android:background="@android:color/transparent"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"

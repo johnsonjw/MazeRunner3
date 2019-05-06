@@ -1,44 +1,26 @@
 package com.example.mazerunner1;
 
 import android.content.pm.ActivityInfo;
-import android.opengl.GLSurfaceView;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.MotionEvent;
-import android.view.TextureView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.mazerunner1.R;
 import com.example.mazerunner1.rendering.MazeGame;
-import com.example.mazerunner1.rendering.MazeWindow;
 import com.example.mazerunner1.rendering.Player;
 
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
 
 public class GameActivity extends AppCompatActivity {
     final static String TAG = "GameActivity";
     private GameSettings gameSettings;
-    private MazeConverter mazeConverter;
-    private File mazeFile;
     private MazeGame mazeGame;
     private Player player;
     private Maze maze;
@@ -52,13 +34,11 @@ public class GameActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.game_exit:
-                finish();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.game_exit) {
+            finish();
+            return true;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
@@ -73,7 +53,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initGameComponents() {
-        gameSettings = new GameSettings(1, 1, 0, 70);
+        gameSettings = new GameSettings(1, 4, 0, 70);
         String mazeFilename =  (String) getIntent().getExtras().get("MAZE_FILE");
         try {
             InputStream inputStream = getAssets().open("mazes/" + mazeFilename);
@@ -83,15 +63,10 @@ public class GameActivity extends AppCompatActivity {
                 total.append(line).append('\n');
             }
             String mazeData = total.toString();
-            Log.d(TAG, "initGameComponents: gameSettings is null? " + (gameSettings == null));
-            mazeConverter = new MazeConverter(gameSettings);
-            Log.d(TAG, "initGameComponents: " + gameSettings.getFov());
+            MazeConverter mazeConverter = new MazeConverter(gameSettings);
             mazeConverter.parseMaze(mazeData);
-            Log.d(TAG, "initGameComponents: Maze parsed.");
             player = mazeConverter.getPlayer();
-            Log.d(TAG, "initGameComponents: Player got.");
             maze = mazeConverter.getMaze();
-            Log.d(TAG, "initGameComponents: Maze got.");
         } catch (Exception e) {
             Log.d(TAG, "initGameComponents: " + e.toString());
             Utilities.notifyException(this, e);
@@ -99,58 +74,44 @@ public class GameActivity extends AppCompatActivity {
     }
 
     private void initUI() {
-        Log.d(TAG, "initUI: this.player is null? " + (this.player == null));
-        DisplayMetrics displayMetrics = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
-        int height = displayMetrics.heightPixels;
-        int width = displayMetrics.widthPixels;
         mazeView = findViewById(R.id.mazeView);
         Button forward = findViewById(R.id.forward);
         Button back = findViewById(R.id.back);
         Button left = findViewById(R.id.left);
         Button right = findViewById(R.id.right);
-        Log.d(TAG,"initUI: Making MazeGame of size " + width + "x" + height );
-        mazeGame = new MazeGame(50, 50, maze, player);
-
+        mazeGame = new MazeGame(70, 20, maze, player);
         mazeView.setText(mazeGame.getMazeRender());
 
-        forward.setOnLongClickListener(new View.OnLongClickListener() {
+        forward.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
-                Log.d(TAG, "onLongClick: Forward pressed.");
+            public void onClick(View view) {
                 mazeGame.moveForward(gameSettings.getMoveSpeed());
                 mazeView.setText(mazeGame.getMazeRender());
-                return true;
             }
         });
 
-        back.setOnLongClickListener(new View.OnLongClickListener() {
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
-                Log.d(TAG, "onLongClick: Backward pressed.");
+            public void onClick(View view) {
                 mazeGame.moveBackward(gameSettings.getMoveSpeed());
                 mazeView.setText(mazeGame.getMazeRender());
-                return true;
             }
         });
 
-        left.setOnLongClickListener(new View.OnLongClickListener() {
+        left.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
-                Log.d(TAG, "onLongClick: Left pressed.");
+            public void onClick(View view) {
                 mazeGame.turnLeft(gameSettings.getTurnSpeed());
                 mazeView.setText(mazeGame.getMazeRender());
-                return true;
             }
         });
 
-        right.setOnLongClickListener(new View.OnLongClickListener() {
+        right.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View view) {
-                Log.d(TAG, "onLongClick: Right pressed.");
+            public void onClick(View view) {
+                Log.d(TAG, "onClick: Right pressed.");
                 mazeGame.turnRight(gameSettings.getTurnSpeed());
                 mazeView.setText(mazeGame.getMazeRender());
-                return true;
             }
         });
     }
