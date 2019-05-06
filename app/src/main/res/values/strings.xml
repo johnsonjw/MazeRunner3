@@ -4,10 +4,11 @@
     <string name="title_activity_create">CreateActivity</string>
     <string name="empty_list">You haven\'t created any maps yet!</string>
 
-    <string-array name = "mapIcons">
+    <string-array name="mapIcons">
         <item>#</item>
         <item>-</item>
         <item>p</item>
         <item>g</item>
     </string-array>
+    <string name="title_activity_testfor_drawing">TestforDrawing</string>
 </resources>

@@ -21,8 +21,6 @@ import java.util.*;
 public class Maze_Creation extends  AppCompatActivity implements AdapterView.OnItemSelectedListener  {
     public StringConverter convert = new StringConverter();
     private LinearLayout parent;
-    private Button b1;
-    private Button b2;
     public int inputX;
     public int inputY;
     public int testX = 10;
