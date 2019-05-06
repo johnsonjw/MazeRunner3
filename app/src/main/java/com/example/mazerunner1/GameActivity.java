@@ -42,6 +42,7 @@ public class GameActivity extends AppCompatActivity {
     private MazeGame mazeGame;
     private Player player;
     private Maze maze;
+    private TextView mazeView;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -103,7 +104,7 @@ public class GameActivity extends AppCompatActivity {
         getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         int height = displayMetrics.heightPixels;
         int width = displayMetrics.widthPixels;
-        TextView mazeView = findViewById(R.id.mazeView);
+        mazeView = findViewById(R.id.mazeView);
         Button forward = findViewById(R.id.forward);
         Button back = findViewById(R.id.back);
         Button left = findViewById(R.id.left);
@@ -118,6 +119,7 @@ public class GameActivity extends AppCompatActivity {
             public boolean onLongClick(View view) {
                 Log.d(TAG, "onLongClick: Forward pressed.");
                 mazeGame.moveForward(gameSettings.getMoveSpeed());
+                mazeView.setText(mazeGame.getMazeRender());
                 return true;
             }
         });
@@ -127,6 +129,7 @@ public class GameActivity extends AppCompatActivity {
             public boolean onLongClick(View view) {
                 Log.d(TAG, "onLongClick: Backward pressed.");
                 mazeGame.moveBackward(gameSettings.getMoveSpeed());
+                mazeView.setText(mazeGame.getMazeRender());
                 return true;
             }
         });
@@ -136,6 +139,7 @@ public class GameActivity extends AppCompatActivity {
             public boolean onLongClick(View view) {
                 Log.d(TAG, "onLongClick: Left pressed.");
                 mazeGame.turnLeft(gameSettings.getTurnSpeed());
+                mazeView.setText(mazeGame.getMazeRender());
                 return true;
             }
         });
@@ -145,6 +149,7 @@ public class GameActivity extends AppCompatActivity {
             public boolean onLongClick(View view) {
                 Log.d(TAG, "onLongClick: Right pressed.");
                 mazeGame.turnRight(gameSettings.getTurnSpeed());
+                mazeView.setText(mazeGame.getMazeRender());
                 return true;
             }
         });
