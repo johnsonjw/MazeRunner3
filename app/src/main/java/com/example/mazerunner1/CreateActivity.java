@@ -12,24 +12,22 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.ArrayList;
+
 
 public class CreateActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
     public StringConverter convert = new StringConverter();
-    private LinearLayout parent;
-    private Button b1;
-    private Button b2;
-    public int inputX;
-    public int inputY;
-    public int testX = 10;
-    public int testY = 10;
-    public ArrayList<String> gridLayout = new ArrayList<>();
+    public char[][] maze;
+    public TextView mazeCreationWindow;
+    public int Xcur,Ycur;
+    public Spinner spinster;
+    int[] cursCoor = new int[2];
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -54,44 +52,105 @@ public class CreateActivity extends AppCompatActivity implements AdapterView.OnI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create);
-        Toolbar toolbar = findViewById(R.id.createToolbar);
-        setSupportActionBar(toolbar);
+
         createSpinner();
-        createDynamicButtons(testX, testY);
-        createDynamicButtons(testX, testY);
+        defaultMaze();
+        backCursorButton();
+        forwardCursorButton();
     }
 
-    public void GetXandY(int x, int y) {
-        inputX = x;
-        inputY = y;
-    }
-
-
-    public ArrayList<String> createDynamicButtons(int x,int y) {
-        Button[][] gridview = new Button[10][10];
-        for (int i = 0; i < x; i++) {
-            for (int b = 0; b < y; b++) {
-
-
-            }
-        }
-        return gridLayout;
-    }
 
     public void createSpinner() {
-        Spinner spinner = findViewById(R.id.userSpinner);
+        spinster = findViewById(R.id.spinner);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.mapIcons, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        spinner.setAdapter(adapter);
-        spinner.setOnItemSelectedListener(this);
+        spinster.setAdapter(adapter);
+        spinster.setOnItemSelectedListener(this);
 
+
+    }
+
+    public void defaultMaze() {
+        mazeCreationWindow = findViewById(R.id.maze_creation_window);
+        basicMaze();
+        cursorStart();
+        mazeCreationWindow.setText(convert.charArrayToString(maze));
+
+
+    }
+
+    public int[] cursorPosition() {
+        for (int x = 0; x < 10; x++) {
+            for (int y = 0; y < 10; y++) {
+                if (maze[x][y] == 'O') {
+                    Xcur = x;
+                    Ycur = y;
+                    updateCursorPosition();
+                }
+            }
+        }
+        return cursCoor;
+    }
+
+    public void setMaze() {
+        maze[Xcur][Ycur] = 'O';
+    }
+
+    public void updateCursorPosition() {
+        cursCoor[0] = Xcur;
+        cursCoor[1] = Ycur;
+
+
+    }
+
+    public void backCursorButton() {
+        Button backCursor = findViewById(R.id.cursor_back_button);
+        backCursor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cursorPosition();
+                Xcur -= 1;
+                if (Xcur == 0) {
+                    Xcur = 1;
+                    Ycur -= 1;
+
+
+                } else {
+                    setMaze();
+                }
+                updateCursorPosition();
+            }
+        });
+    }
+
+    public void forwardCursorButton() {
+        Button forwardCursor = findViewById(R.id.cursor_forward_button);
+        forwardCursor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cursorPosition();
+                Xcur += 1;
+                if (Xcur == 10) {
+                    Xcur = 1;
+                    Ycur += 1;
+                } else {
+                    setMaze();
+                }
+                updateCursorPosition();
+            }
+        });
+    }
+
+    public void editMaze(Spinner spinnerText) {
+        String charOfSpin;
+        charOfSpin = spinnerText.getSelectedItem().toString();
+        char c = charOfSpin.charAt(0);
+        maze[Xcur][Ycur] = c;
     }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        // String text = parent.getItemIdAtPosition(position).toString();
-        //  Toast.makeText(parent.getContext(),text,Toast.LENGTH_SHORT).show();
-        // b1.setText(text);
+        editMaze(spinster);
 
     }
 
@@ -99,26 +158,25 @@ public class CreateActivity extends AppCompatActivity implements AdapterView.OnI
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-    public char[][] preset(){
-        char[][] easy = new char[10][10];
-        for (int i = 0; i < 10; i++) {
-            for (int b = 0; b < 10; b++) {
-                if(easy[i].equals(0) || easy[i].equals(10)){
-                    easy[i][b] = '#';
-                }
-                else{
-                    easy[i][b] ='-';
-                }
+
+    public void basicMaze() {
+        maze = new char[10][10];
+
+        for (int x = 0; x < 10; x++) {
+            for (int y = 0; y < 10; y++) {
+                maze[x][y] = '-';
+                maze[x][0] = '#';
+                maze[x][9] = '#';
+                maze[0][y] = '#';
+                maze[9][y] = '#';
             }
         }
-        easy[1][9] ='p';
-        easy[8][5] ='g';
-        return easy;
+
+
     }
 
-
-    public String toString() {
-        return convert.charArrayToString(preset());
+    public void cursorStart() {
+        maze[1][1] = 'O';
     }
     public void saveTextasFile(String filename, String content){
         String fileName = filename + ".maize";
