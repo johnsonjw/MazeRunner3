@@ -1,5 +1,7 @@
 package com.example.mazerunner1;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,6 +27,7 @@ public class GameActivity extends AppCompatActivity {
     private Player player;
     private Maze maze;
     private TextView mazeView;
+    public static boolean goalReached = false;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -87,6 +90,7 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(View view) {
                 mazeGame.moveForward(gameSettings.getMoveSpeed());
                 mazeView.setText(mazeGame.getMazeRender());
+                if (goalReached) buildGoalDialogue();
             }
         });
 
@@ -114,5 +118,19 @@ public class GameActivity extends AppCompatActivity {
                 mazeView.setText(mazeGame.getMazeRender());
             }
         });
+    }
+
+    private void buildGoalDialogue() {
+        AlertDialog alertDialog = new AlertDialog.Builder(GameActivity.this).create();
+        alertDialog.setTitle("Victory!");
+        alertDialog.setMessage("Congratulations! You found the goal!");
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                        dialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 }

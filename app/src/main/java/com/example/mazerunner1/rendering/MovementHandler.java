@@ -1,6 +1,7 @@
 package com.example.mazerunner1.rendering;
 
 import com.example.mazerunner1.Maze;
+import com.example.mazerunner1.GameActivity;
 
 public class MovementHandler {
     Maze maze;
@@ -27,6 +28,9 @@ public class MovementHandler {
                 }
             } else {
                 needSpace = true;
+            }
+            if(maze.getTileAt(player.getFacingRay().getCoordAt(x)) == 'g') {
+                GameActivity.goalReached = true;
             }
         }
     }
