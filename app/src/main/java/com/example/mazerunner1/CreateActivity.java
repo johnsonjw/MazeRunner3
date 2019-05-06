@@ -3,14 +3,12 @@ package com.example.mazerunner1;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -57,6 +55,7 @@ public class CreateActivity extends AppCompatActivity implements AdapterView.OnI
         defaultMaze();
         backCursorButton();
         forwardCursorButton();
+        saveButton();
     }
 
 
@@ -102,7 +101,16 @@ public class CreateActivity extends AppCompatActivity implements AdapterView.OnI
 
 
     }
-
+    public void saveButton(){
+        Button savebut = findViewById(R.id.save_button);
+        savebut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                saveTextasFile("Maize"+ Xcur, convert.charArrayToString(maze));
+                finish();
+            }
+        });
+    }
     public void backCursorButton() {
         Button backCursor = findViewById(R.id.cursor_back_button);
         backCursor.setOnClickListener(new View.OnClickListener() {
